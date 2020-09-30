@@ -7,7 +7,7 @@ try{
     if(isset($_GET['route'])){ 
         switch ($_GET['route']){
             case 'single';
-                displaySingle();   
+                displaySingle();
                 break;
             case 'add_Article';
                 displayarticle();  
