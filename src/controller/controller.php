@@ -5,6 +5,7 @@
 			require '../src/DAO/ArticleDAO.php';
 			//On ajouter le fichier Comment.php
 			require '../src/DAO/CommentDAO.php';
+			require '../src/DAO/userDAO.php';
 
 	function displayHome() 
 	{ 
@@ -13,7 +14,7 @@
         $articles = $article->getArticles();
         require '../views/home.php';
 	}
-
+	
 	function displaySingle()
 	{
 
@@ -32,8 +33,8 @@
 			$articleDAO = new ArticleDAO();
 			$articleDAO->add_article();
 			require '../views/add_Article.php';
-
- 		}
+		 }
+	
 	function  displaycomment()
 		{
 			$CommentDAO = new CommentDAO();
@@ -67,9 +68,30 @@
 			$article = $articleDAO->deletarticle($_GET['articleId']);
 			header('Location: ../public/index.php');	
 		}
-		function delet_comment()
+		function flag_comment()
 		{
 			$comment = new CommentDAO();
-			$comments = $comment->getCommentsFromArticle($_GET['articleId']);
+			$comments = $comment->flagcomment($_GET['articleId']);
 		}
+		
+		function delet_comment()
+		{
+			//On recupere le commentaire qu'on veut supprimer
+			$comment = new CommentDAO();
+        	$comments = $comment->deletcomment($_GET['articleId']);
+			displaySingle();
+		}
+		function Inscription_login()
+		{
+			$userDAO = new UserDAO();
+			$userDAO->register();
+			require '../views/register.php';
+		}
+		function connexion_login()
+		{
+			$userDAO = new UserDAO();
+			$userDAO->login();
+			require '../views/login.php';
+		}
+		
 ?>

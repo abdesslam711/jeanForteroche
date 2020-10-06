@@ -34,6 +34,8 @@
         <div>
             <!--<h2><a href="add_article.php">Ajouter un article</a></h2>-->
             <h2 class="btn_article"><a href="../public/index.php?route=add_Article">Ajouter un article</a></h2>
+            <h2 class="btn_article"><a href="../public/index.php?route=register">Inscription</a></h2>
+            <h2 class="btn_article"><a href="../public/index.php?route=login">Connexion</a></h2>
         </div>
         
     </body>

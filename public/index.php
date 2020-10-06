@@ -23,9 +23,18 @@ try{
                 break;
             case 'deletarticle';
                 delet_article();
-                break;
-            case 'deletacomment';
+                break; 
+            case 'deletcomment';
                 delet_comment();
+                break; 
+            case 'flagcomment';
+                flag_comment();
+                break;
+            case 'register';
+                Inscription_login();
+                break;
+            case 'login';
+                connexion_login();
                 break; 
             default:
                 echo 'page inconnue';

@@ -22,35 +22,37 @@
                 <h2><?= htmlspecialchars($article['title']);?></h2>
                 <p><?= htmlspecialchars($article['content']);?></p>
                 <p><?= htmlspecialchars($article['author']);?></p>
-                <p>Créé le : <?= htmlspecialchars($article['createdAt']);?></p>
-
-                <?php include('add_comment.php');?>
+                <p>Créé le : <?= htmlspecialchars($article['createdAt']);?></p>  
             </div>
                 <br>
                 <?php     
                 }
                 ?>
-            <div class="actions">
-                <a href="../public/index.php?route=edit_Article&articleId=<?php echo $_GET['articleId']?>">Modifier l'article</a></br>
-                <a href="../public/index.php?route=deletarticle&articleId=<?php echo $_GET['articleId']?>">Supprimer l'article</a>
-            </div> 
-            <div id="comments" class="text-left" style="margin-left: 50px">
-                <h3>Commentaires</h3>
-                <?php
-                    foreach ($comments as $comment) 
-                    
-                    {
-                ?>
-                <h4><?= htmlspecialchars($comment['pseudo']);?></h4>
-                <p><?= htmlspecialchars($comment['content']);?></p>
-                <p>Posté le <?= htmlspecialchars($comment['createdAt']);?></p>
-                <?php
-                }
-                    $comments->closeCursor();
-                ?>
-            </div>
+            <div class="contenu_comment" >
+                <div class="actions">
+                    <?php include('add_comment.php');?>
+                    <a href="../public/index.php?route=edit_Article&articleId=<?php echo $_GET['articleId']?>">Modifier l'article</a></br>
+                    <a href="../public/index.php?route=deletarticle&articleId=<?php echo $_GET['articleId']?>">Supprimer l'article</a></br>
+                    <a href="../public/index.php?route=deletcomment&articleId=<?php echo $_GET['articleId']?>">Supprimer le commentaire</a>
                 
-               <a href="../public/index.php">Retour à l'accueil</a>
+                </div> 
+                <div id="comments" class="text-left" style="margin-left: 50px">
+                    
+                    <h3>Commentaires</h3>
+                    <?php
+                        foreach ($comments as $comment) 
+                        {
+                    ?>
+                    <p><strong><?= htmlspecialchars($comment['pseudo']);?></strong><button><a type="button" href="../public/index.php?route=flagComment&articleId=<?php echo $_GET['articleId']?>">Signaler</p></button></a>
+                    <p><?= htmlspecialchars($comment['content']);?></p>
+                    <p>Posté le <?= htmlspecialchars($comment['createdAt']);?></p>
+                    <?php
+                    }
+                        $comments->closeCursor();
+                    ?>
+                    <a href="../public/index.php">Retour à l'accueil</a>
+                </div> 
+            </div>    
         </div>
     </body>
 </html>

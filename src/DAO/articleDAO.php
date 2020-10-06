@@ -36,19 +36,6 @@
             
             }
         } 
-        /*public function edit_Article()
-        {
-            if (isset($_POST["submit"]))
-            { 
-                $title = htmlspecialchars($_POST['title']);
-                $content = htmlspecialchars($_POST['content']);
-                $author = htmlspecialchars($_POST['author']);
-
-                $sql = 'UPDATE article SET title=:title, content=:content, author=:author WHERE id=:articleId';
-                return $this->createQuery($sql,[$title, $content, $author]);
-            
-            }
-        }*/
         public function edit_Article($POST, $articleId)
         {
             
@@ -63,8 +50,8 @@
         }
         public function deletarticle($articleId)
         {
-            $sql = 'DELETE FROM article WHERE id = ?';
 
+            $sql = 'DELETE FROM article WHERE id = ?';
             $this->createQuery($sql, [$articleId]);
         }
       

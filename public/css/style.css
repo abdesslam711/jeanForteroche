@@ -21,13 +21,7 @@ img
 /*----------------------------------------------------------------
 ------------------------------header------------------------------
 ----------------------------------------------------------------*/
-header {
-	/*position: relative;
-	background: url("../images/fond.jpg") no-repeat center center;
-	background-size: cover;
-	color: #fff;
-	text-shadow: 1px 1px 10px #000;*/ 
-}
+
 .navbar
 {
 	top: 0;
@@ -118,7 +112,11 @@ header {
 	width: 90%;
 	margin: auto;
 }
-
+.contenu_comment
+{
+	display: flex!important;
+	justify-content: space-around;
+}
 .btn_article
 {
 	width: 50%;
