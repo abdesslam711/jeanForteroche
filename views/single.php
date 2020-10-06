@@ -43,7 +43,7 @@
                         foreach ($comments as $comment) 
                         {
                     ?>
-                    <p><strong><?= htmlspecialchars($comment['pseudo']);?></strong><button><a type="button" href="../public/index.php?route=flagComment&articleId=<?php echo $_GET['articleId']?>">Signaler</p></button></a>
+                    <p><strong><?= htmlspecialchars($comment['pseudo']);?></strong><button><a type="button" href="../public/index.php?route=flagcomment&articleId=<?php echo $_GET['articleId']?>">Signaler</p></button></a>
                     <p><?= htmlspecialchars($comment['content']);?></p>
                     <p>Posté le <?= htmlspecialchars($comment['createdAt']);?></p>
                     <?php

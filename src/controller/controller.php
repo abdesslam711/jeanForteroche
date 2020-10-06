@@ -72,6 +72,7 @@
 		{
 			$comment = new CommentDAO();
 			$comments = $comment->flagcomment($_GET['articleId']);
+			displaySingle();
 		}
 		
 		function delet_comment()
