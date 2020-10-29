@@ -8,13 +8,10 @@
 
     <body>
         <div class="blog_article">
-        
             <?php
                 
                 //$article = $articles->fetch()
-                foreach ($articles as $article) {
-              
-                      
+                foreach ($articles as $article) {        
             ?>
                     <!--On recupere les information de article-->
             <div>
@@ -31,10 +28,8 @@
             <div class="contenu_comment" >
                 <div class="actions">
                     <?php include('add_comment.php');?>
-                    <a href="../public/index.php?route=edit_Article&articleId=<?php echo $_GET['articleId']?>">Modifier l'article</a></br>
-                    <a href="../public/index.php?route=deletarticle&articleId=<?php echo $_GET['articleId']?>">Supprimer l'article</a></br>
-                    <a href="../public/index.php?route=deletcomment&articleId=<?php echo $_GET['articleId']?>">Supprimer le commentaire</a>
-                
+                    <!--<a href="../public/index.php?route=edit_Article&articleId=<?php echo $_GET['articleId']?>">Modifier l'article</a></br>
+                    <a href="../public/index.php?route=deletarticle&articleId=<?php echo $_GET['articleId']?>">Supprimer l'article</a></br> -->
                 </div> 
                 <div id="comments" class="text-left" style="margin-left: 50px">
                     
@@ -46,6 +41,7 @@
                     <p><strong><?= htmlspecialchars($comment['pseudo']);?></strong><button><a type="button" href="../public/index.php?route=flagcomment&articleId=<?php echo $_GET['articleId']?>">Signaler</p></button></a>
                     <p><?= htmlspecialchars($comment['content']);?></p>
                     <p>Posté le <?= htmlspecialchars($comment['createdAt']);?></p>
+                    <a href="../public/index.php?route=deletcomment&id=<?php echo $comment['id']?>&articleId=<?php echo $_GET['articleId']?>">Supprimer le commentaire</a></br>
                     <?php
                     }
                         $comments->closeCursor();

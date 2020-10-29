@@ -28,10 +28,10 @@ class CommentDAO extends DAO
             $sql = 'UPDATE comment SET flag = ? WHERE id = ?';
             $this->createQuery($sql, [1, $articleId]);
         }
-        public function deletcomment($articleId)
+        public function deletcomment($id)
         {
             $sql = 'DELETE FROM comment WHERE id = ?';
-            $this->createQuery($sql, [$articleId]);
+            $this->createQuery($sql, [$id]);
             
         }
         
