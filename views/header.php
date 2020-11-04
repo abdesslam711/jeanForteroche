@@ -21,16 +21,19 @@
                 </div>
             </div>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">JEAN FORTEROCHE</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
+                <div class="top_menu">
+                    <a class="navbar-brand" href="#">JEAN FORTEROCHE</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-item nav-link active" href="index.php">Accueil<span class="sr-only">(current)</span></a>
                         <a class="nav-item nav-link" href="single.php">Blog</a>
                         <a class="nav-item nav-link" href="#">Qui suis-je ?</a>
                         <a class="nav-item nav-link" href="contact.php">contact</a>
+                        <a href="../public/index.php?route=login" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Connexion</a>
                     </div>
                 </div>
             </nav>

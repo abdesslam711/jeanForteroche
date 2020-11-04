@@ -9,45 +9,67 @@ try {
             case 'single':
                 displaySingle(); 
                 break;
+                case 'get_comment':
+                    get_comment(); 
+                    break;
             case 'add_Article':
-                displayarticle();
+                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1){
+                    displayarticle();
+                }else{
+                    connexion_login();
+                    $_SESSION ['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
+                }
                 break;
             case 'add_comment':
-                displaycomment();
+                    displaycomment();
                 break;
             case 'edit_Article':
-                afficher_form_modif();
+                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1){ 
+                    afficher_form_modif();
+                }else{
+                    connexion_login();
+                    $_SESSION ['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
+                }
                 break;
             case 'send_article':
-                modifier_article();
+                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1){ 
+                    modifier_article();
+                }else{
+                    connexion_login();
+                    $_SESSION ['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
+                }
                 break;
             case 'deletarticle':
-                delet_article();
+                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1){
+                    delet_article();
+                }else{
+                    connexion_login();
+                    $_SESSION ['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
+                }
                 break;
             case 'deletcomment':
                 delet_comment();
                 break;
+            case 'signalcomment':
+                    signale_comment();
+                    break;   
             case 'flagcomment':
                 flag_comment();
                 break;
             case 'register':
-                if(isset($_SESSION['user'])){
+                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1){
                     Inscription_login();
                 }else{
-                    displayHome();
+                    connexion_login();
+                    $_SESSION ['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
                 }
                 break;
             case 'login';
-                if (isset($_SESSION['user'])) {
                     connexion_login();
-                } else {
-                    displayHome();
-                }
                 break;
             case 'administration':
                 if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1) {
                     page_admin();
-
                 } else {
                    connexion_login();
                    $_SESSION ['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";

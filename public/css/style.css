@@ -20,17 +20,49 @@ span
 	margin: 0;
 	width: 100%;
 	height: 40px;
-	/*color: red;*/
+	
 }
+.welcome_top
+{
+	width: 100%;
+	background-color: lightgreen;
+	text-align: center;
+}
+span
+{ 
+	color:green;
+		
+}
+
 /*----------------------------------------------------------------
 ------------------------------header------------------------------
 ----------------------------------------------------------------*/
-
+.top_page
+{
+	display: flex;
+	width: 100%;
+	height: 60px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background-color: burlywood;
+}
 .navbar
 {
 	top: 0;
     position: fixed;
-    width: 100%!important;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+.collapse
+{
+	display: block!important;
+	width: 38%;
+}
+.top_menu
+{
+	width: 40%;
 }
 .img-fluid {
    
@@ -75,6 +107,7 @@ span
 	/*background-color: #F5F5F5;*/
 	display: flex;
 	margin: auto;
+	
 }
 .firt_publication
 {

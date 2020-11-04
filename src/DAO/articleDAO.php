@@ -10,6 +10,7 @@
             return $articles; 
         }
 
+        
         public function getArticle($articleId)
         {
             $sql = 'SELECT id, title, content, author, createdAt FROM article WHERE id = ?';

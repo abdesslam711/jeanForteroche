@@ -1,10 +1,11 @@
 <?php
 //On inclut le fichier dont on a besoin (ici à la racine de notre site)
 require '../src/DAO/DAO.php';
-//On ajouter le fichier Article.php
+//On ajouter le fichier de model Article.php
 require '../src/DAO/ArticleDAO.php';
-//On ajouter le fichier Comment.php
+//On ajouter le fichier de model Comment.php
 require '../src/DAO/CommentDAO.php';
+//On ajouter le fichier de model user.php
 require '../src/DAO/userDAO.php';
 
 function displayHome()
@@ -14,17 +15,15 @@ function displayHome()
 	$articles = $article->getArticles();
 	require '../views/home.php';
 }
-
 function displaySingle()
 {
-
 	//On recupere l'articles qu'on veut afficher grace l'attribut (GET)
 	$article = new ArticleDAO();
 	$articles = $article->getArticle($_GET['articleId']);
 	// On récupérer tous les commentaires associés à l'article
 	$comment = new CommentDAO();
 	$comments = $comment->getCommentsFromArticle($_GET['articleId']);
-	require '../views/single.php';
+	require '../views/single.php';	
 }
 function displayarticle()
 {
@@ -37,6 +36,7 @@ function  displaycomment()
 {
 	$CommentDAO = new CommentDAO();
 	$CommentDAO->add_comment();
+	$_SESSION['erreur_commentaire'] = "<span style=color:green>votre commentaire à bien été posté.</span>"; 
 	require '../views/add_comment.php';
 }
 function afficher_form_modif()
@@ -74,13 +74,20 @@ function delet_article()
 		displayHome();
 	}
 }
+function signale_comment()
+{
+	// On récupérer tous les commentaires associés à l'article pour les signaler.
+	$commentDAO = new CommentDAO();
+	$comments = $commentDAO->signalcomment();
+
+}
 function flag_comment()
 {
 	$comment = new CommentDAO();
-	$comments = $comment->flagcomment($_GET['articleId']);
-	displaySingle();
+	$comments = $comment->flagcomment();
+	
+	echo $erreur = 'le commentaire a été signalé!' ;	
 }
-
 function delet_comment()
 {
 	//On recupere le commentaire qu'on veut supprimer
@@ -102,15 +109,31 @@ function connexion_login()
 {
 	$userDAO = new UserDAO();
 	$userDAO->login();
+	$_SESSION['admin_connexion'] = "<span >Bienvenu dans votre compte.</span>";
 	require '../views/login.php';
 }
-function  page_admin()
+function get_comment()
 {
-	$articleDAO = new ArticleDAO();
-	$articleDAO->administration();
-	$articles = $articleDAO->getArticles();
-	$userDAO = new UserDAO();
-	
+	$comment = new commentDAO();
+	$comments = $comment->get_comment();
 	require '../views/admin.php';
-	
 }
+function page_admin()
+{
+	
+	$articleDAO = new ArticleDAO();
+	$articles = $articleDAO->getArticles();
+	// On récupérer tous les commentaires associés à l'article
+	$commentDAO = new CommentDAO();
+	$comments = $commentDAO->get_comment();
+	// On récupérer tous les commentaires associés à l'article pour les flager
+	$comment = new commentDAO();
+	$commentflag = $comment->comment_for_flaged();
+	
+	//
+	$articleDAO->administration();
+	require '../views/admin.php';
+}
+
+
+
