@@ -29,6 +29,7 @@ function displayarticle()
 {
 	$articleDAO = new ArticleDAO();
 	$articleDAO->add_article();
+	$_SESSION['add_article'] = "<span style=color:green>Votre article à bien été ajouté.</span>"; 
 	require '../views/add_Article.php';
 }
 
@@ -36,8 +37,9 @@ function  displaycomment()
 {
 	$CommentDAO = new CommentDAO();
 	$CommentDAO->add_comment();
-	$_SESSION['erreur_commentaire'] = "<span style=color:green>votre commentaire à bien été posté.</span>"; 
-	require '../views/add_comment.php';
+	$_SESSION['erreur_commentaire'] = "<span style=color:green>Votre commentaire à bien été posté.</span>"; 
+	header('Location: index.php?route=single&articleId='.($_GET['articleId']));
+	
 }
 function afficher_form_modif()
 {
@@ -69,7 +71,8 @@ function delet_article()
 		//On recupere l'articles qu'on veut supprimer 
 		$articleDAO = new ArticleDAO();
 		$article = $articleDAO->deletarticle($_GET['articleId']);
-		header('Location: ../public/index.php');
+		page_admin();
+		/*header('Location: ../public/index.php');*/
 	} else {
 		displayHome();
 	}
@@ -79,14 +82,16 @@ function signale_comment()
 	// On récupérer tous les commentaires associés à l'article pour les signaler.
 	$commentDAO = new CommentDAO();
 	$comments = $commentDAO->signalcomment();
-
+	
+	displaySingle();
 }
 function flag_comment()
 {
 	$comment = new CommentDAO();
 	$comments = $comment->flagcomment();
 	
-	echo $erreur = 'le commentaire a été signalé!' ;	
+	$_SESSION['flag_comment'] ='Le commentaire a été signalé!' ;	
+	page_admin();
 }
 function delet_comment()
 {
@@ -94,7 +99,8 @@ function delet_comment()
 	if (isset($_GET['id']) && intval($_GET['id']) > 0) {
 		$comment = new CommentDAO();
 		$comments = $comment->deletcomment($_GET['id']);
-		displaySingle();
+		page_admin();
+		$_SESSION['delet_comment'] ='Le commentaire à été supprimer';
 	} else {
 		displayHome();
 	}
@@ -120,7 +126,6 @@ function get_comment()
 }
 function page_admin()
 {
-	
 	$articleDAO = new ArticleDAO();
 	$articles = $articleDAO->getArticles();
 	// On récupérer tous les commentaires associés à l'article
@@ -130,7 +135,6 @@ function page_admin()
 	$comment = new commentDAO();
 	$commentflag = $comment->comment_for_flaged();
 	
-	//
 	$articleDAO->administration();
 	require '../views/admin.php';
 }

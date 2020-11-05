@@ -12,7 +12,7 @@
     </head>
     <body>
         <div >
-            <div class="col-sm-8" >
+            <div  class = "card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
                 <?php
                 if(isset($_SESSION['erreur_connexion'])){
                         echo "<span>".$_SESSION['erreur_connexion']."<span>";

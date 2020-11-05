@@ -28,61 +28,83 @@
                 <h2>Bonjour <?php echo $_SESSION['user']; ?></h2>
             </div>
         </header>
-        <div class="col-sm-12">
+        <div class="card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
             <h2 class="btn_article"><a href="../public/index.php?route=add_Article">Ajouter un article</a></h2>
             <h2 class="btn_article"><a href="../public/index.php?route=register">Inscription</a></h2>  
         </div>
         <div class="col-sm-12">
-            <div id="bloc_page">  
-                <!--on recupére tous nos article-->
-                <?php
-                    foreach ($articles as $article ) {    
-                ?>
-                <div><!--Lorsqu'on click sur le titre de l'article ca nous affiche l'article complet sur une page-->
-                    <header class="header_article">
-                        <h4><a href="../public/index.php?route=single&articleId=<?= htmlspecialchars($article['id']);?>"><?= htmlspecialchars($article['title']);?></a></h4>
-                        
-                        <a href="../public/index.php?route=edit_Article&articleId=<?= htmlspecialchars($article['id']);?>">Modifier l'article</a>
-                        <a href="../public/index.php?route=deletarticle&articleId=<?= htmlspecialchars($article['id']);?>">Supprimer l'article</a>  
-                    </header>
-                </div>
-                <br>
-                <?php
-                    }
-                    ?>
-            </div>
-        </div>
-        <div class="">
-            <?php
-                foreach ($comments as $comment)  {
-                    
-            ?>
-                <p><strong><?= htmlspecialchars($comment['pseudo']);?></strong></p>
-                <p><?= htmlspecialchars($comment['content']);?></p>
-                <p>Posté le <?= htmlspecialchars($comment['createdAt']);?></p>
-                
-                <a href="../public/index.php?route=deletcomment&id=<?php echo $comment['id']?>&articleId=<?= htmlspecialchars($article['id']);?>">Supprimer le commentaire</a></br>
+            <div id="bloc_page"> 
+                <div  class = "card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
+                    <div  class = "card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
+                        <h2>Affichage tous les articles</h2> 
+                    </div>
+                    <!--on recupére tous nos article-->
                     <?php
-                    }
-                        
+                        foreach ($articles as $article ) {    
                     ?>
-            </div>
-            <div  class = "card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
-                <h2> Commentaires signalés par les membres </h2>
-                <?php
-                foreach ($commentflag as $comment) {
-                   
-                ?>
-                    <p><strong><?= htmlspecialchars($comment['pseudo']);?></strong></p>
-                    <p><?= htmlspecialchars($comment['content']);?></p>
-                    <p>Posté le <?= htmlspecialchars($comment['createdAt']);?></p>
-                    <p>flag[<?= htmlspecialchars($comment['flag']);?>]</p>
-                    <p><button><a type="button" href="../public/index.php?route=flagcomment">flager</p></button>
+                    <div><!--Lorsqu'on click sur le titre de l'article ca nous affiche l'article complet sur une page-->
+                        <header class="header_article">
+                            <h4><a href="../public/index.php?route=single&articleId=<?= htmlspecialchars($article['id']);?>"><?= htmlspecialchars($article['title']);?></a></h4>
+                            
+                            <a href="../public/index.php?route=edit_Article&articleId=<?= htmlspecialchars($article['id']);?>">Modifier l'article</a>
+                            <a href="../public/index.php?route=deletarticle&articleId=<?= htmlspecialchars($article['id']);?>">Supprimer l'article</a>  
+                        </header>
+                    </div>
+                    <br>
                     <?php
                         }
-                                
                         ?>
+                </div>
             </div>
+        </div>
+        <div class="card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
+            <div class="card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
+                <h2> Affichage tous les Commentaires </h2>
+            </div>
+            <?php
+                if(isset($_SESSION['delet_comment'])){
+                    echo "<span>".$_SESSION['delet_comment']."<span>";
+                    unset($_SESSION['delet_comment']); 
+                }
+                ?> 
+            <?php
+                foreach ($comments as $comment)  {   
+            ?>
+            <p><strong><?= htmlspecialchars($comment['pseudo']);?></strong></p>
+            <p><?= htmlspecialchars($comment['content']);?></p>
+            <p>Posté le <?= htmlspecialchars($comment['createdAt']);?></p>
+            <a href="../public/index.php?route=deletcomment&id=<?php echo $comment['id']?>&articleId=<?= htmlspecialchars($article['id']);?>">Supprimer le commentaire</a></br>
+            <?php
+            }
+                
+            ?>
+        </div>
+            <div  class = "card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
+                <div class="card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
+                    <h2> Commentaires à signalés par les membres </h2>
+                </div>
+                <div>
+                <?php
+                foreach ($commentflag as $comment) {
+                ?>
+                <?php
+                    if(isset($_SESSION['flag_comment'])){
+                        echo "<span>".$_SESSION['flag_comment']."</span>";
+                        unset($_SESSION['flag_comment']); 
+                    }
+                    ?>
+                        <p><strong><?= htmlspecialchars($comment['pseudo']);?></strong></p>
+                        <p><?= htmlspecialchars($comment['content']);?></p>
+                        <p>Posté le <?= htmlspecialchars($comment['createdAt']);?></p>
+                        <p>Flag[ <?= htmlspecialchars($comment['flag']);?> ]</p>
+                        <a href="../public/index.php?route=flagcomment&id=<?php echo $comment['id']?>&articleId=<?= htmlspecialchars($article['id']);?>">Flager</a></br>
+                    <?php
+                    }
+                            
+                    ?>
+                </div>
+            </div>
+        <div>
             <a href="../public/index.php">Retour à l'accueil</a>
         </div>
     </body>

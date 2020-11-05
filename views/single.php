@@ -47,12 +47,13 @@
                     <?php
                         foreach ($comments as $comment) 
                         {
+
                     ?>
+                    
                     <p><strong><?= htmlspecialchars($comment['pseudo']);?></strong><button><a type="button" href="../public/index.php?route=signalcomment&articleId=<?php echo $_GET['articleId']?>">Signaler</p></button></a></p>
                     <p><?= htmlspecialchars($comment['content']);?></p>
                     <p>Posté le <?= htmlspecialchars($comment['createdAt']);?></p>
-                    
-                    <!--<a href="../public/index.php?route=deletcomment&id=<?php echo $comment['id']?>&articleId=<?php echo $_GET['articleId']?>">Supprimer le commentaire</a></br>-->
+                    <!--<a href="../public/index.php?route=deletcomment&id=<?php/* echo $comment['id']*/?>&articleId=<?php /*echo $_GET['articleId']*/?>">Supprimer le commentaire</a></br>-->
                     <?php
                     }
                         $comments->closeCursor();
