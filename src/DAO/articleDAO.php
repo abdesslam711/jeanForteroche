@@ -3,14 +3,37 @@
     {
         public function getArticles()
         {
+           // $sql = 'SELECT id, title, content, author, createdAt FROM article ORDER BY id DESC ' ;
+            $sql = 'SELECT MAX(id) AS `id`, title, content, author, createdAt FROM article';
+            $query = $this->createQuery($sql);
+            $articles = $query->fetchAll();
+            
+            return $articles; 
+        }
+        public function blog()
+        {
             $sql = 'SELECT id, title, content, author, createdAt FROM article ORDER BY id DESC ' ;
             $query = $this->createQuery($sql);
             $articles = $query->fetchAll();
             
             return $articles; 
         }
-
-        
+        public function about()
+        {
+            $sql = 'SELECT id, title, content, author, createdAt FROM article ORDER BY id DESC ' ;
+            $query = $this->createQuery($sql);
+            $articles = $query->fetchAll();
+            
+            return $articles; 
+        }
+        public function contact()
+        {
+            $sql = 'SELECT id, title, content, author, createdAt FROM article ORDER BY id DESC ' ;
+            $query = $this->createQuery($sql);
+            $articles = $query->fetchAll();
+            
+            return $articles; 
+        }
         public function getArticle($articleId)
         {
             $sql = 'SELECT id, title, content, author, createdAt FROM article WHERE id = ?';

@@ -43,22 +43,17 @@ class CommentDAO extends DAO
         }
     public function flagcomment()
         {
-            /*$sql = 'UPDATE comment SET flag = 1';*/
-
+           
             $sql='UPDATE comment SET flag = 1 WHERE id= ?';
-
             $this->createQuery($sql,[intval($_GET['id'])]);
-            
         }
     public function signalcomment()
         {
             $sql = 'SELECT id, pseudo, content, createdAt FROM comment WHERE article_id ORDER BY article_id DESC ' ;
             $query = $this->createQuery($sql);
             $comments = $query->fetchAll();
-            
             return $comments; 
         }
-    
     public function deletcomment($id)
         {
             $sql = 'DELETE FROM comment WHERE id = ?';

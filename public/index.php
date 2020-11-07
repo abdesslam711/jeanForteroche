@@ -12,6 +12,15 @@ try {
                 case 'get_comment':
                     get_comment(); 
                     break;
+                case 'about':
+                    writer_file();
+                    break;
+                case 'contact':
+                    contact_file();
+                    break;
+                case 'blog':
+                    blog_file();
+                    break;
             case 'add_Article':
                 if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1){
                     displayarticle();

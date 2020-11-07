@@ -25,11 +25,29 @@ function displaySingle()
 	$comments = $comment->getCommentsFromArticle($_GET['articleId']);
 	require '../views/single.php';	
 }
+function blog_file()
+{
+	$article = new ArticleDAO();
+	$articles = $article->blog();
+	require '../views/blog.php';
+}
+function writer_file()
+{
+	$article = new ArticleDAO();
+	$articles = $article->about();
+	require '../views/writer_file.php';
+}
+function contact_file()
+{
+	$article = new ArticleDAO();
+	$articles = $article->contact();
+	require '../views/contact.php';
+}
 function displayarticle()
 {
 	$articleDAO = new ArticleDAO();
 	$articleDAO->add_article();
-	$_SESSION['add_article'] = "<span style=color:green>Votre article à bien été ajouté.</span>"; 
+	$_SESSION['add_article'] = "<span style=color:gree>Votre article à bien été ajouté.</span>"; 
 	require '../views/add_Article.php';
 }
 
@@ -89,7 +107,6 @@ function flag_comment()
 {
 	$comment = new CommentDAO();
 	$comments = $comment->flagcomment();
-	
 	$_SESSION['flag_comment'] ='Le commentaire a été signalé!' ;	
 	page_admin();
 }
@@ -99,8 +116,8 @@ function delet_comment()
 	if (isset($_GET['id']) && intval($_GET['id']) > 0) {
 		$comment = new CommentDAO();
 		$comments = $comment->deletcomment($_GET['id']);
-		page_admin();
 		$_SESSION['delet_comment'] ='Le commentaire à été supprimer';
+		page_admin();
 	} else {
 		displayHome();
 	}
@@ -115,8 +132,9 @@ function connexion_login()
 {
 	$userDAO = new UserDAO();
 	$userDAO->login();
-	$_SESSION['admin_connexion'] = "<span >Bienvenu dans votre compte.</span>";
 	require '../views/login.php';
+	$_SESSION['admin_connexion'] = "<span >Bienvenu dans votre compte.</span>";
+	
 }
 function get_comment()
 {
