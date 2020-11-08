@@ -197,8 +197,23 @@ body, html, header, h1, footer {
   
   ul li {
 	list-style-type: none;
-	display: inline-flex; }
-  
+	display: inline-flex; 
+}
+.formulaire
+	{
+		width: 50%;
+	}
+	span
+{ 
+	color:green;
+		
+}
+.welcome_top
+{
+	width: 100%;
+	background-color: lightgreen;
+	text-align: center;
+}
   /*----------------------------------------------------------------
   ------------------------------header------------------------------
   ----------------------------------------------------------------*/

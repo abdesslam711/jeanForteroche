@@ -1,41 +1,20 @@
+
 tinymce.init({
-    selector: 'textarea#mytextarea'
+  selector: 'textarea#basic-conf',
+  width: 600,
+  height: 300,
+  plugins: [
+    'advlist autolink link image lists charmap print preview hr anchor pagebreak',
+    'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+    'table emoticons template paste help'
+  ],
+  toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | ' +
+    'bullist numlist outdent indent | link image | print preview media fullpage | ' +
+    'forecolor backcolor emoticons | help',
+  menu: {
+    favs: {title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons'}
+  },
+  menubar: 'favs file edit view insert format tools table help',
+  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
 });
 
-$( document ).ready(function() {
-
-
-
-    // au clic sur un lien avec une ancre on applique un effet smooth scroll
-  
-    $('a[href^="#"]').on('click', function(evt){
-       // bloque le comportement par défaut
-       evt.preventDefault(); 
-       // enregistre la valeur de l'attribut  href dans la variable target
-    var target = $(this).attr('href');
-       /* le sélecteur $(html, body) permet de corriger un bug sur chrome 
-       et safari (webkit) */
-    $('html, body')
-       // on arrête toutes les animations en cours 
-       .stop()
-       /* on fait maintenant l'animation vers le haut (scrollTop) vers 
-        notre ancre target */
-       .animate({scrollTop: $(target).offset().top}, 2000 );
-    });
-  
-  
-  
-    // rajoute un background au menu lorsque l'on scroll
-    $(window).scroll(function() {    
-        var scroll = $(window).scrollTop();
-  
-        if (scroll >= 100) {
-            $("nav").addClass("scrolling");
-        } else {
-            $("nav").removeClass("scrolling");
-        }
-    });
-  
-  
-  
-  });

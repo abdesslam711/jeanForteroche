@@ -1,5 +1,5 @@
 
-	<h1>Poster un commentaire</h1>
+	<h3>Poster un commentaire</h3>
 	<div class="form-row">	
 		<form method="POST" action="../public/index.php?route=add_comment&articleId=<?php echo $_GET['articleId']?>">
 			<label for="pseudo">Pseudo</label><br>

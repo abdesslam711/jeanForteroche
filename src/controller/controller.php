@@ -7,6 +7,8 @@ require '../src/DAO/ArticleDAO.php';
 require '../src/DAO/CommentDAO.php';
 //On ajouter le fichier de model user.php
 require '../src/DAO/userDAO.php';
+//On ajouter le fichier de model contact.php
+require '../src/DAO/ContactDAO.php';
 
 function displayHome()
 {
@@ -15,6 +17,7 @@ function displayHome()
 	$articles = $article->getArticles();
 	require '../views/home.php';
 }
+
 function displaySingle()
 {
 	//On recupere l'articles qu'on veut afficher grace l'attribut (GET)
@@ -37,12 +40,7 @@ function writer_file()
 	$articles = $article->about();
 	require '../views/writer_file.php';
 }
-function contact_file()
-{
-	$article = new ArticleDAO();
-	$articles = $article->contact();
-	require '../views/contact.php';
-}
+
 function displayarticle()
 {
 	$articleDAO = new ArticleDAO();
@@ -92,6 +90,20 @@ function delet_article()
 		page_admin();
 		/*header('Location: ../public/index.php');*/
 	} else {
+
+		displayHome();
+	}
+}
+
+function delet_message()
+{
+	if(isset($_GET['contactid']) && intval($_GET['contactid']) > 0){ 
+		//On recupere le message qu'on veut supprimer
+		$contact = new ContactDAO();
+		$contacts = $contact->deletmessage($_GET['contactid']);
+		$_SESSION['delet_message'] ='Le message à été supprimer';
+		page_admin();
+	}else{
 		displayHome();
 	}
 }
@@ -122,12 +134,15 @@ function delet_comment()
 		displayHome();
 	}
 }
+
 function Inscription_login()
 {
 	$userDAO = new UserDAO();
 	$userDAO->register();
+	
 	require '../views/register.php';
 }
+
 function connexion_login()
 {
 	$userDAO = new UserDAO();
@@ -142,6 +157,20 @@ function get_comment()
 	$comments = $comment->get_comment();
 	require '../views/admin.php';
 }
+
+function contact_file()
+{
+	$contact = new ContactDAO();
+	$contacts = $contact->contact();
+	require '../views/contact.php';
+}
+function inser_contact()
+{
+	$contactDAO = new ContactDAO();
+	$contactDAO->insercontact();
+	$_SESSION['message_contact'] = "<span style=color:gree>Votre message à bien été envoyer.</span>";
+	require '../views/contact.php';
+}
 function page_admin()
 {
 	$articleDAO = new ArticleDAO();
@@ -153,6 +182,8 @@ function page_admin()
 	$comment = new commentDAO();
 	$commentflag = $comment->comment_for_flaged();
 	
+	$contactDAO = new ContactDAO();
+	$contacts = $contactDAO->contact();
 	$articleDAO->administration();
 	require '../views/admin.php';
 }

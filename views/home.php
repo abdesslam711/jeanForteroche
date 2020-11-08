@@ -12,6 +12,7 @@
         <title>Blog Jean Forteroche</title>
     </head>
     <body>
+       
         <header role="banner">
             <div class="row justify-content-center" role="navigation">
                     <nav class="navbar navbar-expand-lg navbar-dark col-sm fixed-top">
@@ -36,7 +37,6 @@
                             </li>
                             <li class="nav-item">
                             <a href="../public/index.php?route=login" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Connexion</a>
-                                <!--<a class="nav-link" href="/contact">Contact</a>-->
                             </li>		
                             </ul>
                         </div>
@@ -93,10 +93,10 @@
                 <div class="col-lg-3"></div>
                 <div class="col-lg-6 d-flex justify-content-center mt-5 pt-4">
                     <ul>
-                        <li><a href="/">Accueil</a></li>
-                        <li><a href="/about">Qui suis-je ?</a></li>
-                        <li><a href="/blog">Blog</a></li>
-                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="../public/index.php">Accueil</a></li>
+                        <li><a href="../public/index.php?route=about">Qui suis-je ?</a></li>
+                        <li><a href="../public/index.php?route=blog">Blog</a></li>
+                        <li><a href="../public/index.php?route=contact">Contact</a></li>
                         <li><a href="#">Mentions légales</a></li>
                     </ul>
                 </div>
@@ -107,9 +107,9 @@
                 <div class="col-lg-6 d-flex flex-column align-items-center mb-5">
                     <h3 class="pl-5 h6">Suivez moi sur:</h3>
                     <ul>
-                        <li><a href="#"><img src="/public/img/facebook-icon.png" alt="icone facebook"></a></li>
-                        <li class="pl-3"><a href="#"><img src="/public/img/instagram-icon.png" alt="icone instagram"></a></li>
-                        <li class="pl-3"><a href="#"><img src="/public/img/Twitter-icon.png" alt="icone twitter"></a></li>
+                        <li><a href="#"><img src="../public/images/facebook-icon.png" alt="icone facebook"></a></li>
+                        <li class="pl-3"><a href="#"><img src="../public/images/instagram-icon.png" alt="icone instagram"></a></li>
+                        <li class="pl-3"><a href="#"><img src="../public/images/Twitter-icon.png" alt="icone twitter"></a></li>
                     </ul>
                 </div>
             </div>

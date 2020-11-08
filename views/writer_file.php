@@ -67,20 +67,6 @@
 
 Après 2 ans, il quitte Renault pour créer le site automobile Caradisiac.com7, dans lequel Renault devient un actionnaire de référence aux côtés de Commerzbank, de Nomura et d’ING Barings.  Caradisiac.com devient rapidement le premier site automobile d’information et de petites annonces français8, son forum automobile Forum-auto.com prenant également la première place9,Cette fusion réalisée, il rejoint le secteur financier et le groupe 3i comme Partner Europe11. Il y passe moins de 2 ans et le quitte en 2009 pour racheter le site Internet encore embryonnaire Canalblog et lancer le projet Latour Capital, fonds d’investissement à dimension entrepreneuriale dont l’objectif est notamment d’aider la prise d’indépendance de filiales de grands groupes français. </p>
 
-        <h3>Mes romans</h3>
-        <dl>
-            <dt><dfn>La Mort du roi Tsongor,</dfn></dt>
-            <dd>Actes Sud, 2002</dd>
-            <dt><dfn>Le Soleil des Scorta,</dfn></dt>
-            <dd>Actes Sud, 2004</dd>
-            <dt><dfn>La Porte des Enfers,</dfn></dt>
-            <dd>Actes Sud, 2008</dd>
-            <dt><dfn>Pour seul cortège,</dfn></dt>
-            <dd>Actes Sud, 2012</dd>
-            <dt><dfn>Écoutez nos défaites,</dfn></dt>
-            <dd>Actes Sud, 2016</dd>
-        </dl>
-
     </section>
     <hr>
 
@@ -91,10 +77,10 @@ Après 2 ans, il quitte Renault pour créer le site automobile Caradisiac.com7, 
             <div class="col-lg-3"></div>
             <div class="col-lg-6 d-flex justify-content-center mt-5 pt-4">
                 <ul>
-                    <li><a href="/">Accueil</a></li>
-                    <li><a href="/about">Qui suis-je ?</a></li>
-                    <li><a href="/blog">Blog</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="../public/index.php">Accueil</a></li>
+                    <li><a href="../public/index.php?route=about">Qui suis-je ?</a></li>
+                    <li><a href="../public/index.php?route=blog">Blog</a></li>
+                    <li><a href="../public/index.php?route=contact">Contact</a></li>
                     <li><a href="#">Mentions légales</a></li>
                 </ul>
             </div>
@@ -105,9 +91,9 @@ Après 2 ans, il quitte Renault pour créer le site automobile Caradisiac.com7, 
             <div class="col-lg-6 d-flex flex-column align-items-center mb-5">
                 <h3 class="pl-5 h6">Suivez moi sur:</h3>
                 <ul>
-                    <li><a href="#"><img src="/public/img/facebook-icon.png" alt="icone facebook"></a></li>
-                    <li class="pl-3"><a href="#"><img src="/public/img/instagram-icon.png" alt="icone instagram"></a></li>
-                    <li class="pl-3"><a href="#"><img src="/public/img/Twitter-icon.png" alt="icone twitter"></a></li>
+                    <li><a href="#"><img src="../public/images/facebook-icon.png" alt="icone facebook"></a></li>
+                    <li class="pl-3"><a href="#"><img src="../public/images/instagram-icon.png" alt="icone instagram"></a></li>
+                    <li class="pl-3"><a href="#"><img src="../public/images/Twitter-icon.png" alt="icone twitter"></a></li>
                 </ul>
             </div>
         </div>
@@ -119,11 +105,6 @@ Après 2 ans, il quitte Renault pour créer le site automobile Caradisiac.com7, 
             </div>
         </div>
     </footer>
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="js/about.js"></script>
 </body>
 
 </html>

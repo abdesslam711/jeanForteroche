@@ -20,12 +20,47 @@
                 }
             ?>
         </div>
-        <header class="top_page">
-            <div>
-                <h2>Page d'administration</h2>
-            </div>
-            <div>
-                <h2>Bonjour <?php echo $_SESSION['user']; ?></h2>
+        <header role="banner">
+            <!-- inclusion du menu -->
+            <div class="row justify-content-center" role="navigation">
+                <nav class="navbar navbar-expand-lg navbar-dark col-sm fixed-top">
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Jean Forteroche<br><small>Auteur et écrivain</small></a>
+                    <div class="collapse navbar-collapse" id="navbarToggler">
+                        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../public/index.php">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../public/index.php?route=about">Qui suis-je ?</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../public/index.php?route=blog">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../public/index.php?route=contact">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                            <a href="../public/index.php?route=login" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Deconnexion</a>
+                                <!--<a class="nav-link" href="/contact">Contact</a>-->
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link"> <?php echo $_SESSION['user']; ?></a>
+                            </li>		
+                        </ul>
+                    </div>
+                </nav>
+            </div> <!-- Photo pleine page -->
+            <div class="wrapper">
+                <div class="content">
+                    <div class="text-content">
+                        <h1>Page d'administration</h1>
+                        <p>""</p>
+                    </div>
+                </div>
             </div>
         </header>
         <div class="card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
@@ -84,9 +119,7 @@
                     <h2> Commentaires à signalés par les membres </h2>
                 </div>
                 <div>
-                <?php
-                foreach ($commentflag as $comment) {
-                ?>
+                <?php foreach ($commentflag as $comment) { ?>
                 <?php
                     if(isset($_SESSION['flag_comment'])){
                         echo "<span>".$_SESSION['flag_comment']."</span>";
@@ -98,11 +131,18 @@
                         <p>Posté le <?= htmlspecialchars($comment['createdAt']);?></p>
                         <p>Flag[ <?= htmlspecialchars($comment['flag']);?> ]</p>
                         <a href="../public/index.php?route=flagcomment&id=<?php echo $comment['id']?>&articleId=<?= htmlspecialchars($article['id']);?>">Flager</a></br>
-                    <?php
-                    }
-                            
-                    ?>
+                    <?php } ?>  
                 </div>
+            </div>
+            <div id="contact" class="card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
+                <h2>Contact</h2>
+                <?php foreach ($contacts as $contact) {  ?>
+                    <p><strong><?= htmlspecialchars($contact['name']);?></strong></p>
+                    <p><?= htmlspecialchars($contact['message']); ?></p>
+                    <p><?= htmlspecialchars($contact['email']);?></p>
+                    <p>Posté le <?= htmlspecialchars($contact['createdAt']);?></p>
+                    <a id="#contact" href="../public/index.php?route=deletmessage&contactid=<?= htmlspecialchars($contact['id']);?>">Supprimer le message</a>
+                <?php } ?>  
             </div>
         <div>
             <a href="../public/index.php">Retour à l'accueil</a>

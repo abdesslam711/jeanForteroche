@@ -9,16 +9,27 @@ try {
             case 'single':
                 displaySingle(); 
                 break;
-                case 'get_comment':
+            case 'get_comment':
                     get_comment(); 
                     break;
-                case 'about':
+            case 'about':
                     writer_file();
                     break;
-                case 'contact':
+            case 'contact':
+                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1){
                     contact_file();
+                }else{
+                    connexion_login();
+                    $_SESSION ['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
+                }
                     break;
-                case 'blog':
+            case 'insercontact':
+                    inser_contact();
+                    break;
+            case 'deletmessage':
+                    delet_message();
+                break;
+            case 'blog':
                     blog_file();
                     break;
             case 'add_Article':
@@ -57,13 +68,23 @@ try {
                 }
                 break;
             case 'deletcomment':
-                delet_comment();
+                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1){
+                    delet_comment();
+                }else{
+                    connexion_login();
+                    $_SESSION ['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
+                }
                 break;
             case 'signalcomment':
                     signale_comment();
                     break;   
             case 'flagcomment':
-                flag_comment();
+                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1){
+                    flag_comment();
+                }else{
+                connexion_login();
+                $_SESSION ['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
+            }
                 break;
             case 'register':
                 if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1){

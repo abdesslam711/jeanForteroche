@@ -26,14 +26,7 @@
             
             return $articles; 
         }
-        public function contact()
-        {
-            $sql = 'SELECT id, title, content, author, createdAt FROM article ORDER BY id DESC ' ;
-            $query = $this->createQuery($sql);
-            $articles = $query->fetchAll();
-            
-            return $articles; 
-        }
+        
         public function getArticle($articleId)
         {
             $sql = 'SELECT id, title, content, author, createdAt FROM article WHERE id = ?';
@@ -58,6 +51,8 @@
             }
             
         } 
+        
+
         public function edit_Article($POST, $articleId)
         {
            if(isset($_POST["title"], $_POST["content"], $_POST["author"]) && !empty($_POST["title"]) && !empty($_POST["content"]) && !empty($_POST["author"]))

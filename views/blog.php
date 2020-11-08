@@ -77,25 +77,6 @@
             }
             ?>
         </div>
-        <!-- Construction des liens de pagination -->
-        <div aria-label="Page publications">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="/blog/0#list" aria-label="Precedent">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Precedent</span>
-                    </a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="/blog/1#list">1</a></li>
-                <li class="page-item"><a class="page-link" href="/blog/2#list">2</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="/blog/2#list" aria-label="suivant">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">suivant</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
         <hr>
         <!-- inclusion du footer -->
         <footer role="contentinfo">
@@ -104,10 +85,10 @@
                 <div class="col-lg-3"></div>
                 <div class="col-lg-6 d-flex justify-content-center mt-5 pt-4">
                     <ul>
-                        <li><a href="/">Accueil</a></li>
-                        <li><a href="/about">Qui suis-je ?</a></li>
-                        <li><a href="/blog">Blog</a></li>
-                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="../public/index.php">Accueil</a></li>
+                        <li><a href="../public/index.php?route=about">Qui suis-je ?</a></li>
+                        <li><a href="../public/index.php?route=blog">Blog</a></li>
+                        <li><a href="../public/index.php?route=contact">Contact</a></li>
                         <li><a href="#">Mentions légales</a></li>
                     </ul>
                 </div>
@@ -118,9 +99,9 @@
                 <div class="col-lg-6 d-flex flex-column align-items-center mb-5">
                     <h3 class="pl-5 h6">Suivez moi sur:</h3>
                     <ul>
-                        <li><a href="#"><img src="/public/img/facebook-icon.png" alt="icone facebook"></a></li>
-                        <li class="pl-3"><a href="#"><img src="/public/img/instagram-icon.png" alt="icone instagram"></a></li>
-                        <li class="pl-3"><a href="#"><img src="/public/img/Twitter-icon.png" alt="icone twitter"></a></li>
+                        <li><a href="#"><img src="../public/images/facebook-icon.png" alt="icone facebook"></a></li>
+                        <li class="pl-3"><a href="#"><img src="../public/images/instagram-icon.png" alt="icone instagram"></a></li>
+                        <li class="pl-3"><a href="#"><img src="../public/images/Twitter-icon.png" alt="icone twitter"></a></li>
                     </ul>
                 </div>
             </div>
@@ -132,10 +113,5 @@
                 </div>
             </div>
         </footer>
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="/js/blog.js"></script>
     </body>
 </html>
