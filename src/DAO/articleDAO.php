@@ -1,10 +1,19 @@
  <?php
     class ArticleDAO extends DAO
     {
+
         public function getArticles()
         {
-           // $sql = 'SELECT id, title, content, author, createdAt FROM article ORDER BY id DESC ' ;
+            
             $sql = 'SELECT MAX(id) AS `id`, title, content, author, createdAt FROM article';
+            $query = $this->createQuery($sql);
+            $articles = $query->fetchAll();
+            
+            return $articles; 
+        }
+        public function get_All_Article()
+        {
+            $sql = 'SELECT id, title, content, author, createdAt FROM article ORDER BY id DESC ' ;
             $query = $this->createQuery($sql);
             $articles = $query->fetchAll();
             

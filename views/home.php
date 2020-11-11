@@ -9,18 +9,19 @@
        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="../../blog_ecrivain/public/js/scroll.js"></script>
         <title>Blog Jean Forteroche</title>
     </head>
     <body>
-       
         <header role="banner">
+            <!-- inclusion du menu -->
             <div class="row justify-content-center" role="navigation">
                     <nav class="navbar navbar-expand-lg navbar-dark col-sm fixed-top">
                         
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Jean Forteroche<br><small>Auteur et écrivain</small></a>
+                        <a class="navbar-brand" href="../public/index.php">Jean Forteroche<br><small>Auteur et écrivain</small></a>
                         <div class="collapse navbar-collapse" id="navbarToggler">  
                             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                             <li class="nav-item">
@@ -49,16 +50,11 @@
                     <p>Un roman de Jean Forteroche !</p>
                 </div>
             </div>
-            <!-- Flêche avec effet smoothScroll -->
-            <div class="drop-down">
-                <div id="down"></div>
-                <a href="#down" aria-label="Flêche vers le bas" ><i class="fas fa-angle-down fa-3x"></i></a>
-            </div>
-
         </header>
         <section role="main">
             <div class="card text-center">
-                        <div class="card-header">
+                <!--On recupere le dernier article posté-->
+                    <div class="card-header">
                 <h2>Dernière publication</h2>
             </div>
             <?php
@@ -77,7 +73,8 @@
             }
             ?>
             </div>
-	    </section role="complementary">
+        </section role="complementary">
+        <!--inclusion une image de font  -->
         <section id="paysage">
             <div class="wrapper">
                 <div class="content">

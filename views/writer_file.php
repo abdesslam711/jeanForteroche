@@ -10,9 +10,9 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="../../blog_ecrivain/public/js/scroll.js"></script>
     <title>Blog Jean Forteroche</title>
 </head>
-
 <body>
     <header role="banner">
         <!-- inclusion du menu -->
@@ -22,7 +22,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="#">Jean Forteroche<br><small>Auteur et écrivain</small></a>
+                <a class="navbar-brand" href="../public/index.php">Jean Forteroche<br><small>Auteur et écrivain</small></a>
                 <div class="collapse navbar-collapse" id="navbarToggler">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item">
@@ -39,7 +39,6 @@
                         </li>
                         <li class="nav-item">
                             <a href="../public/index.php?route=login" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Connexion</a>
-                            <!--<a class="nav-link" href="/contact">Contact</a>-->
                         </li>
                     </ul>
                 </div>
@@ -51,12 +50,6 @@
                 <p>Entrez dans mon univers !</p>
             </div>
         </div>
-        <!-- Flèche avec effet smoothscrol -->
-        <div class="drop-down">
-            <div id="down"></div>
-            <a href="#down" aria-label="Flêche vers le bas"><i class="fas fa-angle-down fa-3x"></i></a>
-        </div>
-
     </header>
     <section role="main">
         <h2>Jean Forteroche</h2>

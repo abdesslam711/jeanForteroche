@@ -13,7 +13,7 @@
 	<title>Blog Jean Forteroche</title>
 </head>
 <body>
-	<header role="banner">
+	<header role="banner" class="scrolling">
 
 		<!-- inclusion du menu -->
 		<div class="row justify-content-center" role="navigation">
@@ -22,7 +22,7 @@
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<a class="navbar-brand" href="#">Jean Forteroche<br><small>Auteur et écrivain</small></a>
+				<a class="navbar-brand" href="../public/index.php">Jean Forteroche<br><small>Auteur et écrivain</small></a>
 				<div class="collapse navbar-collapse" id="navbarToggler">
 					<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 						<li class="nav-item">
@@ -37,6 +37,9 @@
 						<li class="nav-item">
 							<a class="nav-link" href="../public/index.php?route=contact">Contact</a>
 						</li>
+						<li class="nav-item">
+							<a href="../public/index.php?route=login" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Connexion</a>
+						</li>
 					</ul>
 				</div>
 			</nav>
@@ -45,7 +48,7 @@
 	<div class="container" role="main">
 		<h1 class="text-xs-center mt-5">Formulaire de contact</h1>
 		<form action="../public/index.php?route=insercontact" method="post" class="mt-5 mb-5" role="form">
-			<!-- Affichage des erreurs -->
+			<!-- inclusion de formulaire -->
 			<div class="form-group" method="post" action="../public/index.php?route=insercontact">
 				<label for="name">Votre nom</label>
 				<input type="text" class="form-control" name="name" id="name" placeholder="anoir" value="">

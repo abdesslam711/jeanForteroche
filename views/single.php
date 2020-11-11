@@ -10,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
 </head>
 
 <body>
@@ -20,7 +21,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="#">Jean Forteroche<br><small>Auteur et écrivain</small></a>
+                <a class="navbar-brand" href="../public/index.php">Jean Forteroche<br><small>Auteur et écrivain</small></a>
                 <div class="collapse navbar-collapse" id="navbarToggler">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item">
@@ -49,10 +50,9 @@
         <div id="publication" class="row d-flex justify-content-center mb-5">
             <!-- Récupération et Construction de l'article et ses commentaires -->
             <div class="col-md-8 mt-5 mb-5">
-                <!-- Affichage des erreurs du formulaire -->
                 <article>
                     <?php foreach ($articles as $article) {   ?>
-                        <!--On recupere les information de article-->
+                        <!--On recupere les information de l'article-->
                         <h2><?= htmlspecialchars($article['title']); ?></h2>
                         <p><?= htmlspecialchars($article['content']); ?></p>
                         <p><?= htmlspecialchars($article['author']); ?></p>
@@ -64,8 +64,7 @@
         <hr id="comments">
         <div id="commentContainer" class="container">
             <div class="row justify-content-between">
-                <div class="col-5 col-sm-5 col-md-4 col-lg-3 mt-5">
-                    <!--<h3 class="h4">Poster un commentaire</h3>-->
+                <div class="col-12 col-sm-5 col-md-4 col-lg-3 mt-5">
                     <?php include('add_comment.php'); ?>
                     <?php
                     if (isset($_SESSION['erreur_commentaire'])) {
@@ -74,11 +73,13 @@
                     }  ?>
                 </div>
                 <div class="col-sm-6 col-md-8 col-lg-8 mt-5">
+                    <!--On recupere les information de commentaire-->
                     <h3>Commentaires</h3>
                     <hr>
                     <article>
                         <?php foreach ($comments as $comment) { ?>
-                            <p><strong><?= htmlspecialchars($comment['pseudo']); ?></strong><button><a type="button" href="../public/index.php?route=signalcomment&articleId=<?php echo $_GET['articleId'] ?>">Signaler</p></button></a></p>
+                            
+                            <p><strong><?= htmlspecialchars($comment['pseudo']); ?></strong> <button type="button" class="btn btn-warning" href="../public/index.php?route=signalcomment&articleId=<?php echo $_GET['articleId'] ?>">Signaler</button></a></p>
                             <p><?= htmlspecialchars($comment['content']); ?></p>
                             <p>Posté le <?= htmlspecialchars($comment['createdAt']); ?></p>
                         <?php }

@@ -17,7 +17,11 @@ function displayHome()
 	$articles = $article->getArticles();
 	require '../views/home.php';
 }
-
+function getAllArticle()
+{
+	$article = new ArticleDAO();
+	$articles = $article->get_All_Article();
+}
 function displaySingle()
 {
 	//On recupere l'articles qu'on veut afficher grace l'attribut (GET)
@@ -76,8 +80,9 @@ function modifier_article()
 		if (!empty($_POST["title"]) && !empty($_POST["content"]) && !empty($_POST["author"])) {
 			$articleDAO = new ArticleDAO();
 			$article = $articleDAO->edit_Article($_POST, $_GET['articleId']);
+			header('Location: index.php?route=single&articleId='.($_GET['articleId']));
 		} else {
-			displayHome();
+			echo $erreur = "la page demander elle n'existe pas ";
 		}
 	}
 }
@@ -88,10 +93,10 @@ function delet_article()
 		$articleDAO = new ArticleDAO();
 		$article = $articleDAO->deletarticle($_GET['articleId']);
 		page_admin();
-		/*header('Location: ../public/index.php');*/
+		
 	} else {
 
-		displayHome();
+		echo $erreur = "la page demander elle n'existe pas ";
 	}
 }
 
@@ -121,6 +126,7 @@ function flag_comment()
 	$comments = $comment->flagcomment();
 	$_SESSION['flag_comment'] ='Le commentaire a été signalé!' ;	
 	page_admin();
+	
 }
 function delet_comment()
 {
@@ -148,7 +154,7 @@ function connexion_login()
 	$userDAO = new UserDAO();
 	$userDAO->login();
 	require '../views/login.php';
-	$_SESSION['admin_connexion'] = "<span >Bienvenu dans votre compte.</span>";
+	$_SESSION['admin_connexion'] = "<span >Bienvenue dans votre compte.</span>";
 	
 }
 function get_comment()
@@ -174,7 +180,7 @@ function inser_contact()
 function page_admin()
 {
 	$articleDAO = new ArticleDAO();
-	$articles = $articleDAO->getArticles();
+	$articles = $articleDAO->get_All_Article();
 	// On récupérer tous les commentaires associés à l'article
 	$commentDAO = new CommentDAO();
 	$comments = $commentDAO->get_comment();
