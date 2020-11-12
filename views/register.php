@@ -15,14 +15,14 @@
             <div  class = "card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
             <?php
                 if(isset($_SESSION['erreur_inscription'])){
-                        echo "<span>".$_SESSION['erreur_inscription']."<span>";
+                        echo "<span>".$_SESSION['erreur_inscription']."</span>";
                         unset($_SESSION['erreur_inscription']); 
                     }
                 ?>
                 <h1>Ajouter un utilisateur</h1>
                 <?php 
                     if(isset($_SESSION['erreur_pseudo'])){
-                        echo "<span>".$_SESSION['erreur_pseudo']."<span>";
+                        echo "<span>".$_SESSION['erreur_pseudo']."</span>";
                         unset($_SESSION['erreur_pseudo']); 
                     }
                     ?></br>

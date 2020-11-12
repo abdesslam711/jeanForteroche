@@ -36,6 +36,9 @@ span
 .top_page{
     background-color: #20B2AA !important; 
 }
+.boutton_admin{
+    padding: 10px 10px 10px 10px;
+}
 /*----------nav---------*/
 nav {
 	position: absolute !important;
@@ -75,9 +78,21 @@ footer {
 .lien_admin{
     width: 30%;
 }
+.breadcrumb{
+    align-items: center;
+}
 @media all and (max-width: 576px) {
     
-
+    tr{
+        display: flex;
+        flex-direction: column;
+    }
+    .breadcrumb h3{
+        font-size: 1.4rem;
+    }
+    .breadcrumb{
+        align-items: center;
+    }
 }
 /*----------------------------------------------------------------
 ------------------------------footer------------------------------

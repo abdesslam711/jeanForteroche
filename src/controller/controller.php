@@ -22,6 +22,7 @@ function getAllArticle()
 	$article = new ArticleDAO();
 	$articles = $article->get_All_Article();
 }
+
 function displaySingle()
 {
 	//On recupere l'articles qu'on veut afficher grace l'attribut (GET)
@@ -45,19 +46,11 @@ function writer_file()
 	require '../views/writer_file.php';
 }
 
-function displayarticle()
-{
-	$articleDAO = new ArticleDAO();
-	$articleDAO->add_article();
-	$_SESSION['add_article'] = "<span style=color:gree>Votre article à bien été ajouté.</span>"; 
-	require '../views/add_Article.php';
-}
-
 function  displaycomment()
 {
 	$CommentDAO = new CommentDAO();
 	$CommentDAO->add_comment();
-	$_SESSION['erreur_commentaire'] = "<span style=color:green>Votre commentaire à bien été posté.</span>"; 
+	$_SESSION['erreur_commentaire'] = "<span>Votre commentaire à bien été posté.</span>"; 
 	header('Location: index.php?route=single&articleId='.($_GET['articleId']));
 	
 }
@@ -74,15 +67,26 @@ function afficher_form_modif()
 		echo $erreur = "la page demander elle n'existe pas ";
 	}
 }
+function displayarticle()
+{
+	
+	$articleDAO = new ArticleDAO();
+	$articleDAO->add_article();
+	//$_SESSION['add_article_erreur'] = "<span>Votre article à bien été ajouté.</span>"; 
+	require '../views/add_Article.php';
+}
 function modifier_article()
 {
 	if (isset($_POST["title"]) && isset($_POST["content"]) && isset($_POST["author"])) {
 		if (!empty($_POST["title"]) && !empty($_POST["content"]) && !empty($_POST["author"])) {
 			$articleDAO = new ArticleDAO();
 			$article = $articleDAO->edit_Article($_POST, $_GET['articleId']);
-			header('Location: index.php?route=single&articleId='.($_GET['articleId']));
+			header('Location: index.php?route=edit_Article&articleId='.($_GET['articleId']));
+			$_SESSION['modif_article_erreur'] ='Votre article à été modifier';
+			page_admin();
 		} else {
-			echo $erreur = "la page demander elle n'existe pas ";
+			$_SESSION['modif_article_erreur'] ='tous les chemps doivent être remplies';
+			header('Location: index.php?route=edit_Article&articleId='.($_GET['articleId']));
 		}
 	}
 }
@@ -93,9 +97,7 @@ function delet_article()
 		$articleDAO = new ArticleDAO();
 		$article = $articleDAO->deletarticle($_GET['articleId']);
 		page_admin();
-		
 	} else {
-
 		echo $erreur = "la page demander elle n'existe pas ";
 	}
 }
@@ -109,7 +111,7 @@ function delet_message()
 		$_SESSION['delet_message'] ='Le message à été supprimer';
 		page_admin();
 	}else{
-		displayHome();
+		echo $erreur = "la page demander elle n'existe pas ";
 	}
 }
 function signale_comment()
@@ -117,8 +119,9 @@ function signale_comment()
 	// On récupérer tous les commentaires associés à l'article pour les signaler.
 	$commentDAO = new CommentDAO();
 	$comments = $commentDAO->signalcomment();
-	
+	$_SESSION['signal_comment'] ='Le commentaire a été signalé!' ;
 	displaySingle();
+
 }
 function flag_comment()
 {
@@ -137,7 +140,7 @@ function delet_comment()
 		$_SESSION['delet_comment'] ='Le commentaire à été supprimer';
 		page_admin();
 	} else {
-		displayHome();
+		echo $erreur = "la page demander elle n'existe pas ";
 	}
 }
 
@@ -187,12 +190,16 @@ function page_admin()
 	// On récupérer tous les commentaires associés à l'article pour les flager
 	$comment = new commentDAO();
 	$commentflag = $comment->comment_for_flaged();
-	
+
 	$contactDAO = new ContactDAO();
 	$contacts = $contactDAO->contact();
 	$articleDAO->administration();
 	require '../views/admin.php';
 }
-
+function page_ination()
+{
+	$article = new ArticleDAO();
+	$articles = $article->pagination();
+}
 
 

@@ -68,7 +68,7 @@
                     <?php include('add_comment.php'); ?>
                     <?php
                     if (isset($_SESSION['erreur_commentaire'])) {
-                        echo "<span>" . $_SESSION['erreur_commentaire'] . "<span>";
+                        echo "<span>" . $_SESSION['erreur_commentaire'] . "</span>";
                         unset($_SESSION['erreur_commentaire']);
                     }  ?>
                 </div>
@@ -76,10 +76,17 @@
                     <!--On recupere les information de commentaire-->
                     <h3>Commentaires</h3>
                     <hr>
+                    
                     <article>
+                        <?php
+                            if (isset($_SESSION['signal_comment'])) {
+                                echo "<span>" . $_SESSION['signal_comment'] . "</span>";
+                                unset($_SESSION['signal_comment']);
+                            }
+                            ?>
                         <?php foreach ($comments as $comment) { ?>
                             
-                            <p><strong><?= htmlspecialchars($comment['pseudo']); ?></strong> <button type="button" class="btn btn-warning" href="../public/index.php?route=signalcomment&articleId=<?php echo $_GET['articleId'] ?>">Signaler</button></a></p>
+                            <p><strong><?= htmlspecialchars($comment['pseudo']); ?></strong> <a href="../public/index.php?route=signalcomment&articleId=<?php echo $_GET['articleId'] ?>" class="btn btn-warning btn-lg active" role="button" aria-pressed="true">Signaler</a></p>
                             <p><?= htmlspecialchars($comment['content']); ?></p>
                             <p>Posté le <?= htmlspecialchars($comment['createdAt']); ?></p>
                         <?php }

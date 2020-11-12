@@ -16,7 +16,7 @@
                 if($nbuser == 0 ){ 
                     $sql = 'INSERT INTO user (pseudo, password, createdAt, role_id) VALUES (?, ?, NOW(), ?)';
                     $this->createQuery($sql, [$_POST['pseudo'], password_hash($_POST['password'], PASSWORD_BCRYPT),1]);
-                    print_r($_POST['pseudo']);
+                    
                     $_SESSION['erreur_inscription'] = "votre compte à bien été ajouté";   
                 }else{
                     $_SESSION ['erreur_pseudo'] = "le pseudo existe déja";

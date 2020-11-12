@@ -11,14 +11,21 @@
             
             return $articles; 
         }
+        public function pagination()
+        {
+           
+        
+        }
         public function get_All_Article()
         {
+            
             $sql = 'SELECT id, title, content, author, createdAt FROM article ORDER BY id DESC ' ;
             $query = $this->createQuery($sql);
             $articles = $query->fetchAll();
             
             return $articles; 
         }
+        
         public function blog()
         {
             $sql = 'SELECT id, title, content, author, createdAt FROM article ORDER BY id DESC ' ;
@@ -53,15 +60,20 @@
                 $title = htmlspecialchars($_POST['title']);
                 $content = htmlspecialchars($_POST['content']);
                 $author = htmlspecialchars($_POST['author']);
+                
+                if (!empty($_POST["title"]) && !empty($_POST["content"]) && !empty($_POST["author"])) {
+                    $sql = 'INSERT INTO article (title, content, author, createdAt) VALUES (?, ?, ?, NOW())';
+                    return $this->createQuery($sql,[$title, $content, $author]);
+                    $_SESSION['add_article_erreur'] = "<span>Votre article à bien été ajouté.</span>";
 
-                $sql = 'INSERT INTO article (title, content, author, createdAt) VALUES (?, ?, ?, NOW())';
-
-            return $this->createQuery($sql,[$title, $content, $author]);
+                }else{
+                    $_SESSION['add_article_erreur'] = "<span>tous les chemps doivent étre remplies.</span>";
+                    header('Location: index.php?route=add_Article');
+                }
             }
-            
+  
         } 
         
-
         public function edit_Article($POST, $articleId)
         {
            if(isset($_POST["title"], $_POST["content"], $_POST["author"]) && !empty($_POST["title"]) && !empty($_POST["content"]) && !empty($_POST["author"]))

@@ -12,6 +12,12 @@
     </head>
     <body>
         <div class="card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
+        <?php
+			if(isset($_SESSION['modif_article_erreur'])){
+					echo "<span>".$_SESSION['modif_article_erreur']."</span>";
+					unset($_SESSION['modif_article_erreur']); 
+				}
+			?>
             <h1>Modifier mon article</h1>
             <div>
                 <form class="formulaire" method="post" action="index.php?route=send_article&articleId=<?php echo $_GET['articleId']?>">

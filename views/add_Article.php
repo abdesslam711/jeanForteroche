@@ -12,24 +12,32 @@
 		<script src="../../blog_ecrivain/public/js/mytextarea.js"></script>
     </head>
     <body>
-		<h1>Ajouter un article</h1>
 		<div  class = "card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
-		    <form class="formulaire" method="POST" action="">
-		        <label for="title">Titre</label><br>
-		        <input class="form-control mx-sm-8" type="text" id="title" name="title"><br>
-		        <label for="content">Contenu</label><br>
-		        <textarea id="basic-conf" class="form-control mx-sm-8" id="content" name="content"></textarea><br>
-		        <label for="author">Auteur</label><br>
-				<input class="form-control mx-sm-8" type="text" id="author" name="author"><br>
-				<?php
-                    if(isset($_SESSION['add_article'])){
-                        echo "<span>".$_SESSION['add_article']."</span>";
-                        unset($_SESSION['add_article']); 
-                    }
-                    ?></br>
-				<input class="btn btn-success" type="submit" value="Envoyer" id="submit" name="submit">
-		    </form>
+		<?php
+			if(isset($_SESSION['add_article_erreur'])){
+					echo "<span>".$_SESSION['add_article_erreur']."</span>";
+					unset($_SESSION['add_article_erreur']); 
+				}
+			?>
+			<h1>Ajouter un article</h1>
+			<div  class = "col-sm-12">
+				<form class="formulaire" method="POST" action="">
+					<label for="title">Titre</label><br>
+					<input class="form-control mx-sm-8" type="text" id="title" name="title"><br>
+					<label for="content">Contenu</label><br>
+					<textarea id="basic-conf" class="form-control mx-sm-8" id="content" name="content"></textarea><br>
+					<label for="author">Auteur</label><br>
+					<input class="form-control mx-sm-8" type="text" id="author" name="author"><br>
+					<?php
+						if(isset($_SESSION['add_article_erreur'])){
+							echo "<span>".$_SESSION['add_article_erreur']."</span>";
+							unset($_SESSION['add_article_erreur']); 
+						}
+						?></br>
+					<input class="btn btn-success" type="submit" value="Envoyer" id="submit" name="submit">
+				</form>
+			</div>
+			<a href="index.php">Retour à l'acceil</a>
 		</div>
-		<a href="index.php">Retour à l'acceil</a>
 	</body>
 </html>

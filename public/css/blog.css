@@ -102,12 +102,6 @@ footer div.row:last-child {
     content: "/";
     padding-left: .4em; }
 
-/*#footer_links ul li:last-child:after {
-    content: ""; }*/
-
-/*#footer_links ul li a {
-    color: #0066cc; }*/
-
 footer .row {
     margin-right: 0 !important; }
 
@@ -126,6 +120,10 @@ footer .row {
         margin-right: 0 !important;
         width: 100% !important; } 
     }
+    .content p {
+        font-size: 1rem;
+        padding: 2rem;
+        font-weight: 500; }
 @media all and (min-width: 993px) {
     .navbar, section {
         padding-left: 10rem !important;

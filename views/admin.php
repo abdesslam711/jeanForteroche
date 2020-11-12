@@ -16,7 +16,7 @@
     <div class="alert-heading">
         <?php
         if (isset($_SESSION['admin_connexion'])) {
-            echo "<span>" . $_SESSION['admin_connexion'] . "<span>";
+            echo "<span>" . $_SESSION['admin_connexion'] . "</span>";
             unset($_SESSION['admin_connexion']);
         } ?>
     </div>
@@ -55,122 +55,184 @@
             </nav>
         </div> <!-- Photo pleine page -->
     </header>
-    <div class="card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
-        <a href="../public/index.php?route=add_Article" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Ajouter un article</a></button>
-        <a href="../public/index.php?route=register" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Inscription</a>
+    <div class="col-sm-10">
+    </div class="col-sm-10">
+        <p class="boutton_admin"><a href="../public/index.php?route=add_Article" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Ajouter un article</a></button></p>
+        <p class="boutton_admin"><a href="../public/index.php?route=register" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Inscription</a></p>
+    </div>
     </div>
     <div class="col-sm-12">
         <div id="bloc_page">
-            <div class="card m-5 p-4 ">
-                <h2>Affichage tous les articles</h2>
-                <div class="card m-5 p-4 ">     
+            <div class=" ">
+                <header class="breadcrumb">
+                    <h3>Affichage tous les articles</h3>
+                </header>
+                <div class=" ">
                     <div class="section_article">
                         <!--on recupére tous nos article-->
                         <?php foreach ($articles as $article) { ?>
-                        <!--Lorsqu'on click sur le titre de l'article ca nous affiche l'article complet sur une page-->
-                        <header class="header_article">
-                            <div class="lien_admin">  
-                                <h4><a href="../public/index.php?route=single&articleId=<?= htmlspecialchars($article['id']); ?>"><?= htmlspecialchars($article['title']); ?></a></h4>
-                            </div>
-                            <div class="lien_admin"> 
-                                <a href="../public/index.php?route=edit_Article&articleId=<?= htmlspecialchars($article['id']); ?>" class="btn btn-warning btn-lg active" role="button" aria-pressed="true">Modifier l'article</a>
-                            </div>
-                            <div class="lien_admin">     
-                                <a href="../public/index.php?route=deletarticle&articleId=<?= htmlspecialchars($article['id']); ?>" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Supprimer l'article</a>
-                            </div>
-                        </header>
-                        <br>
+                            <!--Lorsqu'on click sur le titre de l'article ca nous affiche l'article complet sur une page-->
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <h4><a><?= htmlspecialchars($article['id']); ?></a></h4>
+                                        </td>
+                                        <td>
+                                            <h4><a href="../public/index.php?route=single&articleId=<?= htmlspecialchars($article['id']); ?>"><?= htmlspecialchars($article['title']); ?></a></h4>
+                                        </td>
+
+                                        <td><a href="../public/index.php?route=edit_Article&articleId=<?= htmlspecialchars($article['id']); ?>" class="btn btn-warning btn-lg active" role="button" aria-pressed="true">Modifier l'article</a></td>
+
+                                        <td><a href="../public/index.php?route=deletarticle&articleId=<?= htmlspecialchars($article['id']); ?>" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Supprimer l'article</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br>
                         <?php } ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
-        <div class="card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center" id="section_comment">
-            <h2> Affichage tous les Commentaires </h2>
-        </div>
-            <?php
-            if (isset($_SESSION['delet_comment'])) {
-                echo "<span>" . $_SESSION['delet_comment'] . "</span>";
-                unset($_SESSION['delet_comment']);
-            }
-            ?>
-            <?php
-            foreach ($comments as $comment) { ?>
-                <p><strong><?= htmlspecialchars($comment['pseudo']); ?></strong></p>
-                <p><?= htmlspecialchars($comment['content']); ?></p>
-                <p>Posté le <?= htmlspecialchars($comment['createdAt']); ?></p>
-                <button type="button" class="btn btn-danger"><a href="../public/index.php?route=deletcomment&id=<?php echo $comment['id'] ?>&articleId=<?= htmlspecialchars($article['id']); ?>">Supprimer le commentaire</a></button>
-            <?php }  ?>
-        </div>    
-    </div>
-    <div class="card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
-        <div class="card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
-            <h2> Commentaires à signalés par les membres </h2>
-        </div>
-        <div>
-            <?php foreach ($commentflag as $comment) { ?>
+    <div class="">
+        <div class="col-sm-12" id="section_comment">
+            <header class="breadcrumb">
+                <h3> Affichage tous les Commentaires </h3>
+            </header>
+            <table class="table table-bordered">
                 <?php
-                if (isset($_SESSION['flag_comment'])) {
-                    echo "<span>" . $_SESSION['flag_comment'] . "</span>";
-                    unset($_SESSION['flag_comment']);
+                if (isset($_SESSION['delet_comment'])) {
+                    echo "<span>" . $_SESSION['delet_comment'] . "</span>";
+                    unset($_SESSION['delet_comment']);
                 }
                 ?>
-                <p><strong><?= htmlspecialchars($comment['pseudo']); ?></strong></p>
-                <p><?= htmlspecialchars($comment['content']); ?></p>
-                <p>Posté le <?= htmlspecialchars($comment['createdAt']); ?></p>
-                <p>Flag[ <?= htmlspecialchars($comment['flag']); ?> ]</p>
-                <button type="button" class="btn btn-warning"><a href="../public/index.php?route=flagcomment&id=<?php echo $comment['id'] ?>&articleId=<?= htmlspecialchars($article['id']); ?>">Flager</a></button>
-            <?php } ?>
+                <?php
+                foreach ($comments as $comment) { ?>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p><strong><?= htmlspecialchars($comment['id']); ?></strong></p>
+                            </td>
+                            <td>
+                                <p><strong><?= htmlspecialchars($comment['pseudo']); ?></strong></p>
+                            </td>
+                            <td>
+                                <p><?= htmlspecialchars($comment['content']); ?></p>
+                            </td>
+                            <td><a href="../public/index.php?route=deletcomment&id=<?php echo $comment['id'] ?>&articleId=<?= htmlspecialchars($article['id']); ?>" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Supprimer le commentaire</button></a></td>
+                        </tr>
+                    </tbody>
+                <?php }  ?>
+            </table>
         </div>
-    </div>
-    <div id="contact" class="card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
-        <h2>Contact</h2>
-        <?php foreach ($contacts as $contact) {  ?>
-            <p><strong><?= htmlspecialchars($contact['name']); ?></strong></p>
-            <p><?= htmlspecialchars($contact['message']); ?></p>
-            <p><?= htmlspecialchars($contact['email']); ?></p>
-            <p>Posté le <?= htmlspecialchars($contact['createdAt']); ?></p>
-            <button type="button" class="btn btn-danger"><a id="#contact" href="../public/index.php?route=deletmessage&contactid=<?= htmlspecialchars($contact['id']); ?>">Supprimer le message</a></button>
-        <?php } ?>
-    </div>
-    <hr>
-    <!-- inclusion du footer -->
-    <footer role="contentinfo">
-        <!-- Liens du site -->
-        <div class="row" id="footer_links">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-6 d-flex justify-content-center mt-5 pt-4">
-                <ul>
-                    <li><a href="../public/index.php">Accueil</a></li>
-                    <li><a href="../public/index.php?route=about">Qui suis-je ?</a></li>
-                    <li><a href="../public/index.php?route=blog">Blog</a></li>
-                    <li><a href="../public/index.php?route=contact">Contact</a></li>
-                    <li><a href="#">Mentions légales</a></li>
-                </ul>
+        <div class="col-sm-12">
+            <header class="breadcrumb">
+                <h3> Commentaires à signalés par les membres </h3>
+            </header>
+            <table class="table table-bordered">
+                <?php
+                    if (isset($_SESSION['signal_comment'])) {
+                        echo "<span>" . $_SESSION['signal_comment'] . "</span>";
+                        unset($_SESSION['signal_comment']);
+                    }
+                    ?>
+                <?php foreach ($commentflag as $comment) { ?>
+                    
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p><?= htmlspecialchars($comment['id']); ?></p>
+                            </td>
+                            <td>
+                                <p><strong><?= htmlspecialchars($comment['pseudo']); ?></strong></p>
+                            </td>
+                            <td>
+                                <p><?= htmlspecialchars($comment['content']); ?></p>
+                            </td>
+                            <td>
+                                <p>Posté le <?= htmlspecialchars($comment['createdAt']); ?></p>
+                            </td>
+                            <td>
+                                <p>Flag[ <?= htmlspecialchars($comment['flag']); ?> ]</p>
+                            </td>
+                            <td><a href="../public/index.php?route=flagcomment&id=<?php echo $comment['id'] ?>&articleId=<?= htmlspecialchars($article['id']); ?>" class="btn btn-warning btn-lg active" role="button" aria-pressed="true">Flager</a></button></td>
+                        </tr>
+                    </tbody>
+                <?php } ?>
+            </table>
+        </div>
+        <div id="contact" class="col-sm-12">
+            <table class="table table-bordered">
+                <header class="breadcrumb">
+                    <h3>Contact</h3>
+                </header>
+                <?php
+                    if (isset($_SESSION['delet_message'])) {
+                        echo "<span>" . $_SESSION['delet_message'] . "</span>";
+                        unset($_SESSION['delet_message']);
+                    }
+                    ?>
+                <?php foreach ($contacts as $contact) {  ?>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p><strong><?= htmlspecialchars($contact['id']); ?></strong></p>
+                            </td>
+                            <td>
+                                <p><strong><?= htmlspecialchars($contact['name']); ?></strong></p>
+                            </td>
+                            <td>
+                                <p><?= htmlspecialchars($contact['message']); ?></p>
+                            </td>
+                            <td>
+                                <p><?= htmlspecialchars($contact['email']); ?></p>
+                            </td>
+                            <td>
+                                <p>Posté le <?= htmlspecialchars($contact['createdAt']); ?></p>
+                            </td>
+                            <td><a href="../public/index.php?route=deletmessage&contactid=<?= htmlspecialchars($contact['id']); ?>" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Supprimer le message</a></td>
+                        </tr>
+                    </tbody>
+                <?php } ?>
+            </table>
+        </div>
+        <hr>
+        <!-- inclusion du footer -->
+        <footer role="contentinfo">
+            <!-- Liens du site -->
+            <div class="row" id="footer_links">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6 d-flex justify-content-center mt-5 pt-4">
+                    <ul>
+                        <li><a href="../public/index.php">Accueil</a></li>
+                        <li><a href="../public/index.php?route=about">Qui suis-je ?</a></li>
+                        <li><a href="../public/index.php?route=blog">Blog</a></li>
+                        <li><a href="../public/index.php?route=contact">Contact</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <!-- Réseau sociaux -->
-        <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-6 d-flex flex-column align-items-center mb-5">
-                <h3 class="pl-5 h6">Suivez moi sur:</h3>
-                <ul>
-                    <li><a href="#"><img src="../public/images/facebook-icon.png" alt="icone facebook"></a></li>
-                    <li class="pl-3"><a href="#"><img src="../public/images/instagram-icon.png" alt="icone instagram"></a></li>
-                    <li class="pl-3"><a href="#"><img src="../public/images/Twitter-icon.png" alt="icone twitter"></a></li>
-                </ul>
+            <!-- Réseau sociaux -->
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6 d-flex flex-column align-items-center mb-5">
+                    <h3 class="pl-5 h6">Suivez moi sur:</h3>
+                    <ul>
+                        <li><a href="#"><img src="../public/images/facebook-icon.png" alt="icone facebook"></a></li>
+                        <li class="pl-3"><a href="#"><img src="../public/images/instagram-icon.png" alt="icone instagram"></a></li>
+                        <li class="pl-3"><a href="#"><img src="../public/images/Twitter-icon.png" alt="icone twitter"></a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <!-- Copyright -->
-        <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-6 d-flex justify-content-center mt-4">
-                <p><small>&copy; 2020 - Tout droits réservés / Site réalisé par Abdesslam Bouzaroura </small></p>
+            <!-- Copyright -->
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6 d-flex justify-content-center mt-4">
+                    <p><small>&copy; 2020 - Tout droits réservés / Site réalisé par Abdesslam Bouzaroura </small></p>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
 </body>
 
 </html>

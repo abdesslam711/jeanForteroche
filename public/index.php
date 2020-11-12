@@ -78,6 +78,9 @@ try {
             case 'signalcomment':
                     signale_comment();
                     break;   
+            case 'pagination':
+                    page_ination();
+                    break; 
             case 'flagcomment':
                 if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1){
                     flag_comment();
