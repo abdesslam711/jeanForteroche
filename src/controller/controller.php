@@ -119,7 +119,7 @@ function signale_comment()
 	// On récupérer tous les commentaires associés à l'article pour les signaler.
 	$commentDAO = new CommentDAO();
 	$comments = $commentDAO->signalcomment();
-	$_SESSION['signal_comment'] ='Le commentaire a été signalé!' ;
+	$_SESSION['signal_comment'] ='Le commentaire a été signalé!';
 	displaySingle();
 
 }

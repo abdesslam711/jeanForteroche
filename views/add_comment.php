@@ -7,7 +7,7 @@
 			<label for="content">Message</label><br>
 			<input type="hidden" id="POST" name="article_id" value="<?php echo $_GET['articleId'] ?>"><br>
 			<textarea class="form-control mx-sm-3" id="content" name="content"></textarea><br>
-			<input class="btn btn-success" type="submit" value="Ajouter" id="submit" name="submit"></br>
+			<input   class="btn btn-success" type="submit" value="Ajouter" id="submit" name="submit"></br>
 			
 		</form>
 	</div>

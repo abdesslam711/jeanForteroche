@@ -5,7 +5,7 @@
         public function getArticles()
         {
             
-            $sql = 'SELECT MAX(id) AS `id`, title, content, author, createdAt FROM article';
+            $sql = 'SELECT id, title, content, author, createdAt FROM article ORDER BY id DESC LIMIT 0,1' ;
             $query = $this->createQuery($sql);
             $articles = $query->fetchAll();
             
@@ -55,7 +55,7 @@
 
         public function add_article()
         {
-            if (isset($_POST["title"], $_POST["content"], $_POST["author"]) AND !empty($_POST["title"]) AND !empty($_POST["content"]) AND !empty($_POST["author"]))
+            if (isset($_POST["title"], $_POST["content"], $_POST["author"]))
                 {
                 $title = htmlspecialchars($_POST['title']);
                 $content = htmlspecialchars($_POST['content']);
@@ -63,12 +63,13 @@
                 
                 if (!empty($_POST["title"]) && !empty($_POST["content"]) && !empty($_POST["author"])) {
                     $sql = 'INSERT INTO article (title, content, author, createdAt) VALUES (?, ?, ?, NOW())';
-                    return $this->createQuery($sql,[$title, $content, $author]);
                     $_SESSION['add_article_erreur'] = "<span>Votre article à bien été ajouté.</span>";
-
+                    return $this->createQuery($sql,[$title, $content, $author]);
+                    
                 }else{
                     $_SESSION['add_article_erreur'] = "<span>tous les chemps doivent étre remplies.</span>";
-                    header('Location: index.php?route=add_Article');
+                    //header('Location: index.php?route=add_Article');
+                    return;
                 }
             }
   

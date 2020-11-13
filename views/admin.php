@@ -44,7 +44,7 @@
                             <a class="nav-link" href="../public/index.php?route=contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a href="../public/index.php?route=login" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Deconnexion</a>
+                            <a href="../public/index.php?route=logout" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Deconnexion</a>
                             <!--<a class="nav-link" href="/contact">Contact</a>-->
                         </li>
                         <li class="nav-item">
@@ -57,8 +57,8 @@
     </header>
     <div class="col-sm-10">
     </div class="col-sm-10">
-        <p class="boutton_admin"><a href="../public/index.php?route=add_Article" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Ajouter un article</a></button></p>
-        <p class="boutton_admin"><a href="../public/index.php?route=register" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Inscription</a></p>
+    <p class="boutton_admin"><a href="../public/index.php?route=add_Article" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Ajouter un article</a></button></p>
+    <p class="boutton_admin"><a href="../public/index.php?route=register" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Inscription</a></p>
     </div>
     </div>
     <div class="col-sm-12">
@@ -69,11 +69,12 @@
                 </header>
                 <div class=" ">
                     <div class="section_article">
-                        <!--on recupére tous nos article-->
-                        <?php foreach ($articles as $article) { ?>
-                            <!--Lorsqu'on click sur le titre de l'article ca nous affiche l'article complet sur une page-->
-                            <table class="table table-bordered">
-                                <tbody>
+                        <table class="table table-bordered">
+                            <tbody>
+                                <!--on recupére tous nos article-->
+                                <?php foreach ($articles as $article) { ?>
+                                    <!--Lorsqu'on click sur le titre de l'article ca nous affiche l'article complet sur une page-->
+
                                     <tr>
                                         <td>
                                             <h4><a><?= htmlspecialchars($article['id']); ?></a></h4>
@@ -86,10 +87,11 @@
 
                                         <td><a href="../public/index.php?route=deletarticle&articleId=<?= htmlspecialchars($article['id']); ?>" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Supprimer l'article</a></td>
                                     </tr>
-                                </tbody>
-                            </table>
-                            <br>
-                        <?php } ?>
+
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                        <br>
                     </div>
                 </div>
             </div>
@@ -132,13 +134,19 @@
             </header>
             <table class="table table-bordered">
                 <?php
-                    if (isset($_SESSION['signal_comment'])) {
-                        echo "<span>" . $_SESSION['signal_comment'] . "</span>";
-                        unset($_SESSION['signal_comment']);
-                    }
-                    ?>
+                if (isset($_SESSION['signal_comment'])) {
+                    echo "<span>" . $_SESSION['signal_comment'] . "</span>";
+                    unset($_SESSION['signal_comment']);
+                }
+                ?>
+                <?php
+                if (isset($_SESSION['flag_comment'])) {
+                    echo "<span>" . $_SESSION['flag_comment'] . "</span>";
+                    unset($_SESSION['flag_comment']);
+                }
+                ?>
                 <?php foreach ($commentflag as $comment) { ?>
-                    
+
                     <tbody>
                         <tr>
                             <td>
@@ -168,13 +176,14 @@
                     <h3>Contact</h3>
                 </header>
                 <?php
-                    if (isset($_SESSION['delet_message'])) {
-                        echo "<span>" . $_SESSION['delet_message'] . "</span>";
-                        unset($_SESSION['delet_message']);
-                    }
-                    ?>
-                <?php foreach ($contacts as $contact) {  ?>
-                    <tbody>
+                if (isset($_SESSION['delet_message'])) {
+                    echo "<span>" . $_SESSION['delet_message'] . "</span>";
+                    unset($_SESSION['delet_message']);
+                }
+                ?>
+                <tbody>
+                    <?php foreach ($contacts as $contact) {  ?>
+
                         <tr>
                             <td>
                                 <p><strong><?= htmlspecialchars($contact['id']); ?></strong></p>
@@ -193,8 +202,9 @@
                             </td>
                             <td><a href="../public/index.php?route=deletmessage&contactid=<?= htmlspecialchars($contact['id']); ?>" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Supprimer le message</a></td>
                         </tr>
-                    </tbody>
-                <?php } ?>
+
+                    <?php } ?>
+                </tbody>
             </table>
         </div>
         <hr>

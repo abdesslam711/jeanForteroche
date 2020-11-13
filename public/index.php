@@ -2,7 +2,7 @@
 session_start();
 require '../vendor/autoload.php';
 require '../src/controller/controller.php';
-
+require '../src/controller/controller.php';
 try {
     if (isset($_GET['route'])) {
         switch ($_GET['route']) {
@@ -11,6 +11,11 @@ try {
                 break;
             case 'get_comment':
                     get_comment(); 
+                    break;
+            case 'logout':
+                    session_destroy();
+                    session_start();
+                    connexion_login();
                     break;
             case 'about':
                     writer_file();

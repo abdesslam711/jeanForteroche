@@ -62,7 +62,7 @@
             ?>
             <div class="card-body">
                 <h4><?= htmlspecialchars($article['title']);?></a></h4>
-                <p><?= htmlspecialchars($article['content']);?></p>
+                <p><?= $article['content'];?></p>
                 <p><?= htmlspecialchars($article['author']);?></p>
                 <a href="../public/index.php?route=single&articleId=<?= htmlspecialchars($article['id']);?>" class="btn btn-primary"><i class="fas fa-book-open"></i> Lire</a>
             </div>

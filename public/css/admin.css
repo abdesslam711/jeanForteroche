@@ -125,8 +125,8 @@ footer {
           margin-left: 0 !important; } }
   @media all and (min-width: 993px) {
       .navbar, form {
-          padding-left: 10rem !important;
-          padding-right: 10rem !important; }
+          padding-left: 1rem !important;
+          padding-right: 1rem !important; }
   
       .navbar-nav {
           background: none;

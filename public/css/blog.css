@@ -12,7 +12,10 @@ header, body, html, .wrapper {
 ul li {
     list-style-type: none;
     display: inline-flex; }
-
+img{
+    width: 100%;
+    height: auto;
+}
 /*----------------------------------------------------------------
 ------------------------------header------------------------------
 ----------------------------------------------------------------*/
@@ -126,8 +129,8 @@ footer .row {
         font-weight: 500; }
 @media all and (min-width: 993px) {
     .navbar, section {
-        padding-left: 10rem !important;
-        padding-right: 10rem !important; }
+        padding-left: 1rem !important;
+        padding-right: 1rem !important; }
 
     .navbar-nav {
         background: none;
