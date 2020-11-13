@@ -54,7 +54,7 @@
                     <?php foreach ($articles as $article) {   ?>
                         <!--On recupere les information de l'article-->
                         <h2><?= htmlspecialchars($article['title']); ?></h2>
-                        <p><?= htmlspecialchars($article['content']); ?></p>
+                        <p><?= $article['content']; ?></p>
                         <p><?= htmlspecialchars($article['author']); ?></p>
                         <p>Créé le : <?= htmlspecialchars($article['createdAt']); ?></p> <br>
                     <?php } ?>
