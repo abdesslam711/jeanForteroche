@@ -10,21 +10,16 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <title>Blog Jean Forteroche</title>
     </head>
-    <body>
-        <div>      
-            <div  class = "card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
-            <?php
-                if(isset($_SESSION['erreur_inscription'])){
+    <body>     
+        <div  class = "card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
+            
+            <h1>Ajouter un utilisateur</h1>
+            <div class="col-sm-5">
+                <?php
+                    if(isset($_SESSION['erreur_inscription'])){
                         echo "<span>".$_SESSION['erreur_inscription']."</span>";
                         unset($_SESSION['erreur_inscription']); 
-                    }
-                ?>
-                <h1>Ajouter un utilisateur</h1>
-                <?php 
-                    if(isset($_SESSION['erreur_pseudo'])){
-                        echo "<span>".$_SESSION['erreur_pseudo']."</span>";
-                        unset($_SESSION['erreur_pseudo']); 
-                    }
+                        }
                     ?></br>
                 <form  method="post" action="../public/index.php?route=register">
                     <label for="pseudo">Pseudo</label><br>
@@ -32,9 +27,9 @@
                     <label for="password">Mot de passe</label><br>
                     <input class="form-control" type="password" id="password" name="password"><br>
                     <input class="btn btn-primary" type="submit" value="S'inscrire" id="submit" name="submit">
-                </form> 
-                <a href="../public/index.php">Retour à l'accueil</a>
-            </div>
+                </form>  
+            </div> 
+            <a href="../public/index.php?route=administration" class="btn btn-info btn-lg active" role="button" aria-pressed="true">< Retour </a>
         </div>
     </body>
 </html>

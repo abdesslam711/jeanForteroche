@@ -76,27 +76,6 @@
     ?>
     </div>
     <hr>
-    <!-- Construction des liens de pagination -->
-    <div aria-label="Page publications">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="../public/index.php?route=blog/1#list" aria-label="Precedent">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Precedent</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="../public/index.php?route=blog/1#list">1</a></li>
-            <li class="page-item active"><a class="page-link" href="../public/index.php?route=blog/2#list">2</a></li>
-            <li class="page-item">
-                <a class="page-link" href="../public/index.php?route=blog/3#list" aria-label="suivant">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">suivant</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-    </div>
-    <hr>
     <!-- inclusion du footer -->
     <footer role="contentinfo">
         <!-- Liens du site -->
@@ -108,7 +87,7 @@
                     <li><a href="../public/index.php?route=about">Qui suis-je ?</a></li>
                     <li><a href="../public/index.php?route=blog">Blog</a></li>
                     <li><a href="../public/index.php?route=contact">Contact</a></li>
-                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="../public/index.php">Mentions légales</a></li>
                 </ul>
             </div>
         </div>

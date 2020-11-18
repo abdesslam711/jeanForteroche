@@ -1,5 +1,11 @@
 
 	<h3>Poster un commentaire</h3>
+	<?php
+		if(isset($_SESSION['add_comment'])){
+				echo "<span>".$_SESSION['add_comment']."</span>";
+				unset($_SESSION['add_comment']); 
+			}
+		?>
 	<div class="form-row">	
 		<form method="POST" action="../public/index.php?route=add_comment&articleId=<?php echo $_GET['articleId']?>">
 			<label for="pseudo">Pseudo</label><br>

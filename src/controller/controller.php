@@ -2,17 +2,17 @@
 //On inclut le fichier dont on a besoin (ici à la racine de notre site)
 require '../src/DAO/DAO.php';
 //On ajouter le fichier de model Article.php
-require '../src/DAO/ArticleDAO.php';
+require '../src/DAO/articleDAO.php';
 //On ajouter le fichier de model Comment.php
-require '../src/DAO/CommentDAO.php';
+require '../src/DAO/commentDAO.php';
 //On ajouter le fichier de model user.php
 require '../src/DAO/userDAO.php';
 //On ajouter le fichier de model contact.php
-require '../src/DAO/ContactDAO.php';
+require '../src/DAO/contactDAO.php';
 
 function displayHome()
 {
-	/*on recupére tous nos article*/
+	//on recupére tous nos article
 	$article = new ArticleDAO();
 	$articles = $article->getArticles();
 	require '../views/home.php';
@@ -31,7 +31,7 @@ function displaySingle()
 	// On récupérer tous les commentaires associés à l'article
 	$comment = new CommentDAO();
 	$comments = $comment->getCommentsFromArticle($_GET['articleId']);
-	require '../views/single.php';	
+	require '../views/single.php';
 }
 function blog_file()
 {
@@ -48,11 +48,11 @@ function writer_file()
 
 function  displaycomment()
 {
+
 	$CommentDAO = new CommentDAO();
 	$CommentDAO->add_comment();
-	$_SESSION['erreur_commentaire'] = "<span>Votre commentaire à bien été posté.</span>"; 
-	header('Location: index.php?route=single&articleId='.($_GET['articleId']));
-	
+
+	header('Location: index.php?route=single&articleId=' . ($_GET['articleId']));
 }
 function afficher_form_modif()
 {
@@ -69,10 +69,9 @@ function afficher_form_modif()
 }
 function displayarticle()
 {
-	
+
 	$articleDAO = new ArticleDAO();
 	$articleDAO->add_article();
-	//$_SESSION['add_article_erreur'] = "<span>Votre article à bien été ajouté.</span>"; 
 	require '../views/add_Article.php';
 }
 function modifier_article()
@@ -81,12 +80,12 @@ function modifier_article()
 		if (!empty($_POST["title"]) && !empty($_POST["content"]) && !empty($_POST["author"])) {
 			$articleDAO = new ArticleDAO();
 			$article = $articleDAO->edit_Article($_POST, $_GET['articleId']);
-			header('Location: index.php?route=edit_Article&articleId='.($_GET['articleId']));
-			$_SESSION['modif_article_erreur'] ='Votre article à été modifier';
+			header('Location: index.php?route=edit_Article&articleId=' . ($_GET['articleId']));
+			$_SESSION['modif_article_erreur'] = 'Votre article à été modifier';
 			page_admin();
 		} else {
-			$_SESSION['modif_article_erreur'] ='tous les chemps doivent être remplies';
-			header('Location: index.php?route=edit_Article&articleId='.($_GET['articleId']));
+			$_SESSION['modif_article_erreur'] = 'tous les chemps doivent être remplies';
+			header('Location: index.php?route=edit_Article&articleId=' . ($_GET['articleId']));
 		}
 	}
 }
@@ -104,13 +103,13 @@ function delet_article()
 
 function delet_message()
 {
-	if(isset($_GET['contactid']) && intval($_GET['contactid']) > 0){ 
+	if (isset($_GET['contactid']) && intval($_GET['contactid']) > 0) {
 		//On recupere le message qu'on veut supprimer
 		$contact = new ContactDAO();
 		$contacts = $contact->deletmessage($_GET['contactid']);
-		$_SESSION['delet_message'] ='Le message à été supprimer';
+		$_SESSION['delet_message'] = 'Le message à été supprimer';
 		page_admin();
-	}else{
+	} else {
 		echo $erreur = "la page demander elle n'existe pas ";
 	}
 }
@@ -119,17 +118,19 @@ function signale_comment()
 	// On récupérer tous les commentaires associés à l'article pour les signaler.
 	$commentDAO = new CommentDAO();
 	$comments = $commentDAO->signalcomment();
-	$_SESSION['signal_comment'] ='Le commentaire a été signalé!';
+	$_SESSION['signal_comment'] = 'Le commentaire a été signalé!';
 	displaySingle();
-
 }
 function flag_comment()
 {
-	$comment = new CommentDAO();
-	$comments = $comment->flagcomment();
-	$_SESSION['flag_comment'] ='Le commentaire a été signalé!' ;	
-	page_admin();
-	
+	if (isset($_GET['id'])  && intval($_GET['id']) > 0) {
+		$comment = new CommentDAO();
+		$comments = $comment->flagcomment();
+		$_SESSION['flag_comment'] = 'Le commentaire a été signalé!';
+		page_admin();
+	} else {
+		echo $erreur = "la page demander elle n'existe pas ";
+	}
 }
 function delet_comment()
 {
@@ -137,18 +138,16 @@ function delet_comment()
 	if (isset($_GET['id']) && intval($_GET['id']) > 0) {
 		$comment = new CommentDAO();
 		$comments = $comment->deletcomment($_GET['id']);
-		$_SESSION['delet_comment'] ='Le commentaire à été supprimer';
+		$_SESSION['delet_comment'] = 'Le commentaire à été supprimer';
 		page_admin();
 	} else {
 		echo $erreur = "la page demander elle n'existe pas ";
 	}
 }
-
 function Inscription_login()
 {
 	$userDAO = new UserDAO();
 	$userDAO->register();
-	
 	require '../views/register.php';
 }
 
@@ -156,15 +155,18 @@ function connexion_login()
 {
 	$userDAO = new UserDAO();
 	$userDAO->login();
-	require '../views/login.php';
 	$_SESSION['admin_connexion'] = "<span >Bienvenue dans votre compte.</span>";
-	
+	require '../views/login.php';
 }
 function get_comment()
 {
-	$comment = new commentDAO();
-	$comments = $comment->get_comment();
-	require '../views/admin.php';
+	if (isset($_GET['id'])  && intval($_GET['id']) > 0) {
+		$comment = new commentDAO();
+		$comments = $comment->get_comment();
+		require '../views/admin.php';
+	} else {
+		echo $erreur = "la page demander elle n'existe pas ";
+	}
 }
 
 function contact_file()
@@ -177,7 +179,7 @@ function inser_contact()
 {
 	$contactDAO = new ContactDAO();
 	$contactDAO->insercontact();
-	$_SESSION['message_contact'] = "<span style=color:gree>Votre message à bien été envoyer.</span>";
+
 	require '../views/contact.php';
 }
 function page_admin()
@@ -190,16 +192,9 @@ function page_admin()
 	// On récupérer tous les commentaires associés à l'article pour les flager
 	$comment = new commentDAO();
 	$commentflag = $comment->comment_for_flaged();
-
+	// On récupérer tous les messages de nos visiteurs
 	$contactDAO = new ContactDAO();
 	$contacts = $contactDAO->contact();
 	$articleDAO->administration();
 	require '../views/admin.php';
 }
-function page_ination()
-{
-	$article = new ArticleDAO();
-	$articles = $article->pagination();
-}
-
-

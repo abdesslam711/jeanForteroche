@@ -1,116 +1,113 @@
 <?php
 session_start();
-require '../vendor/autoload.php';
+//require '../vendor/autoload.php';
 require '../src/controller/controller.php';
-require '../src/controller/controller.php';
+
 try {
     if (isset($_GET['route'])) {
         switch ($_GET['route']) {
             case 'single':
-                displaySingle(); 
+                displaySingle();
                 break;
             case 'get_comment':
-                    get_comment(); 
-                    break;
+                get_comment();
+                break;
             case 'logout':
-                    session_destroy();
-                    session_start();
-                    connexion_login();
-                    break;
+                session_destroy();
+                session_start();
+                connexion_login();
+                break;
             case 'about':
-                    writer_file();
-                    break;
+                writer_file();
+                break;
             case 'contact':
-                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1){
+                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1) {
                     contact_file();
-                }else{
+                } else {
                     connexion_login();
-                    $_SESSION ['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
+                    $_SESSION['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
                 }
-                    break;
+                break;
             case 'insercontact':
-                    inser_contact();
-                    break;
+                inser_contact();
+                break;
             case 'deletmessage':
-                    delet_message();
+                delet_message();
                 break;
             case 'blog':
-                    blog_file();
-                    break;
+                blog_file();
+                break;
             case 'add_Article':
-                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1){
+                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1) {
                     displayarticle();
-                }else{
+                } else {
                     connexion_login();
-                    $_SESSION ['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
+                    $_SESSION['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
                 }
                 break;
             case 'add_comment':
-                    displaycomment();
+                displaycomment();
                 break;
             case 'edit_Article':
-                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1){ 
+                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1) {
                     afficher_form_modif();
-                }else{
+                } else {
                     connexion_login();
-                    $_SESSION ['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
+                    $_SESSION['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
                 }
                 break;
             case 'send_article':
-                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1){ 
+                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1) {
                     modifier_article();
-                }else{
+                } else {
                     connexion_login();
-                    $_SESSION ['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
+                    $_SESSION['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
                 }
                 break;
             case 'deletarticle':
-                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1){
+                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1) {
                     delet_article();
-                }else{
+                } else {
                     connexion_login();
-                    $_SESSION ['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
+                    $_SESSION['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
                 }
                 break;
             case 'deletcomment':
-                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1){
+                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1) {
                     delet_comment();
-                }else{
+                } else {
                     connexion_login();
-                    $_SESSION ['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
+                    $_SESSION['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
                 }
                 break;
             case 'signalcomment':
-                    signale_comment();
-                    break;   
-            case 'pagination':
-                    page_ination();
-                    break; 
+                signale_comment();
+                break;
             case 'flagcomment':
-                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1){
+                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1) {
                     flag_comment();
-                }else{
-                connexion_login();
-                $_SESSION ['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
-            }
+                } else {
+                    connexion_login();
+                    $_SESSION['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
+                }
                 break;
             case 'register':
-                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1){
+                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1) {
                     Inscription_login();
-                }else{
+                } else {
                     connexion_login();
-                    $_SESSION ['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
+                    $_SESSION['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
                 }
                 break;
             case 'login';
-                    connexion_login();
+                connexion_login();
                 break;
             case 'administration':
                 if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1) {
                     page_admin();
                 } else {
-                   connexion_login();
-                   $_SESSION ['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
+                    connexion_login();
+                    $_SESSION['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
                 }
                 break;
             default:

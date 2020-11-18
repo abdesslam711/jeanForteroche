@@ -11,11 +11,7 @@
             
             return $articles; 
         }
-        public function pagination()
-        {
-           
-        
-        }
+       
         public function get_All_Article()
         {
             
@@ -68,7 +64,6 @@
                     
                 }else{
                     $_SESSION['add_article_erreur'] = "<span>tous les chemps doivent étre remplies.</span>";
-                    //header('Location: index.php?route=add_Article');
                     return;
                 }
             }

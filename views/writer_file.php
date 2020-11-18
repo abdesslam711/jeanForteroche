@@ -74,7 +74,7 @@ Après 2 ans, il quitte Renault pour créer le site automobile Caradisiac.com7, 
                     <li><a href="../public/index.php?route=about">Qui suis-je ?</a></li>
                     <li><a href="../public/index.php?route=blog">Blog</a></li>
                     <li><a href="../public/index.php?route=contact">Contact</a></li>
-                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="../public/index.php">Mentions légales</a></li>
                 </ul>
             </div>
         </div>

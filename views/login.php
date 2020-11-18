@@ -11,38 +11,25 @@
         <title>Blog Jean Forteroche</title>
     </head>
     <body>
-        <div >
-            <div  class = "card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
+        <div  class = "card m-5 p-4 shadow bg-white arrondi d-flex flex-column justify-content-center align-items-center">
+            
+            <h1>Connexion</h1>
+            <div  class = "col-sm-5">
+                <form method="post" action="../public/index.php?route=login">
                 <?php
-                if(isset($_SESSION['erreur_connexion'])){
-                        echo "<span>".$_SESSION['erreur_connexion']."</span>";
-                        unset($_SESSION['erreur_connexion']); 
-                    }
-                ?>
-                <h1>Connexion</h1>
-                <div">
-                    <form method="post" action="../public/index.php?route=login">
-                        <label for="pseudo">Pseudo</label><br>
-                        <?php 
-                            if(isset($_SESSION['erreur_pseudo'])){
-                                echo "<span>".$_SESSION['erreur_pseudo']."<span>";
-                                unset($_SESSION['erreur_pseudo']); 
-                            }
-                            ?>
-                        <input class="form-control" type="text" id="pseudo" name="pseudo"><br>
-                        <label for="password">Mot de passe</label><br>
-                        <input class="form-control" type="password" id="password" name="password"><br>
-                        <input class="btn btn-primary"  type="submit" value="Connexion" id="submit" name="submit">
-                    </form>
-                    <a href="../public/index.php">Retour à l'accueil</a>
-                    <?php 
-                    /*if(isset($_SESSION['erreur_pseudo'])){
-                        echo "<span>".$_SESSION['erreur_pseudo']."<span>";
-                        unset($_SESSION['erreur_pseudo']); 
-                    }*/
+                    if(isset($_SESSION['erreur_connexion'])){
+                            echo "<span>".$_SESSION['erreur_connexion']."</span>";
+                            unset($_SESSION['erreur_connexion']); 
+                        }
                     ?></br>
-                </div>
+                    <label for="pseudo">Pseudo</label><br>    
+                    <input class="form-control" type="text" id="pseudo" name="pseudo"><br>
+                    <label for="password">Mot de passe</label><br>
+                    <input class="form-control" type="password" id="password" name="password"><br>
+                    <input class="btn btn-primary"  type="submit" value="Connexion" id="submit" name="submit">
+                </form>
             </div>
+            <a href="../public/index.php"class="btn btn-info btn-lg active" role="button" aria-pressed="true">< Retour à l'accueil</a>
         </div>
     </body>
 </html>

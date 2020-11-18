@@ -57,9 +57,9 @@
 				<label for="message">Votre message</label>
 				<textarea class="form-control" id="message" name="message" rows="3"></textarea>
 				<?php
-                    if(isset($_SESSION['message_contact'])){
-                        echo "<span>".$_SESSION['message_contact']."</span>";
-                        unset($_SESSION['message_contact']); 
+                    if(isset($_SESSION['erreur_contact'])){
+                        echo "<span>".$_SESSION['erreur_contact']."</span>";
+                        unset($_SESSION['erreur_contact']); 
                     }
                     ?></br>
 			<button class="btn btn-primary mt-2" type="submit" value="Envoyer" id="submit" name="submit">Envoyer</button>
@@ -77,7 +77,7 @@
 					<li><a href="../public/index.php?route=about">Qui suis-je ?</a></li>
 					<li><a href="../public/index.php?route=blog">Blog</a></li>
 					<li><a href="../public/index.php?route=contact">Contact</a></li>
-					<li><a href="#">Mentions légales</a></li>
+					<li><a href="../public/index.php">Mentions légales</a></li>
 				</ul>
 			</div>
 		</div>

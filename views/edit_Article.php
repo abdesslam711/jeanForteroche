@@ -14,7 +14,7 @@
     </head>
     <body>
         <div class="card m-5 p-4 shadow bg-white arrondi d-flex flex-column ">
-            <div class="add_articles">
+            <div>
             <?php
                 if(isset($_SESSION['modif_article_erreur'])){
                         echo "<span>".$_SESSION['modif_article_erreur']."</span>";
