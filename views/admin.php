@@ -70,6 +70,12 @@
                 <div class=" ">
                     <div class="section_article">
                         <table class="table table-bordered">
+                        <?php
+                            if (isset($_SESSION['delet_article'])) {
+                                echo "<span>" . $_SESSION['delet_article'] . "</span>";
+                                unset($_SESSION['delet_article']);
+                            }
+                            ?>
                             <tbody>
                                 <!--on recupére tous nos article-->
                                 <?php foreach ($articles as $article) { ?>

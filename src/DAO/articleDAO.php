@@ -54,7 +54,7 @@
             if (isset($_POST["title"], $_POST["content"], $_POST["author"]))
                 {
                 $title = htmlspecialchars($_POST['title']);
-                $content = htmlspecialchars($_POST['content']);
+                $content = $_POST['content'];
                 $author = htmlspecialchars($_POST['author']);
                 
                 if (!empty($_POST["title"]) && !empty($_POST["content"]) && !empty($_POST["author"])) {
@@ -82,8 +82,8 @@
                     'articleId' => $articleId
                 ]);
             }else{
-                echo $erreur = "tous les chemps doivent être completes";
-            } 
+                echo $erreur = "tous les chemps doivent être completés";
+            }
         
         }
         public function deletarticle($articleId)

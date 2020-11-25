@@ -1,8 +1,10 @@
 <?php
+
 class UserDAO extends DAO
 {
     public function register()
     {
+
         if (isset($_POST["pseudo"], $_POST["password"])) {
 
             $pseudo = $_POST['pseudo'];
@@ -16,17 +18,18 @@ class UserDAO extends DAO
                     $sql = 'INSERT INTO user (pseudo, password, createdAt, role_id) VALUES (?, ?, NOW(), ?)';
                     $this->createQuery($sql, [$_POST['pseudo'], password_hash($_POST['password'], PASSWORD_BCRYPT), 1]);
 
-                    $_SESSION['erreur_inscription'] = "votre compte à bien été ajouté";
+                    $_SESSION['erreur_inscription'] = "votre compte a bien été ajouté";
                 } else {
-                    $_SESSION['erreur_inscription'] = "le pseudo existe déja";
+                    $_SESSION['erreur_inscription'] = "le pseudo existe déjà";
                 }
             } else {
-                $_SESSION['erreur_inscription'] = "tous les chemps dpoivent etre remplies";
+                $_SESSION['erreur_inscription'] = "tous les champs doivent être remplies";
             }
         }
     }
     public function login()
     {
+
         if (isset($_POST['submit'])) {
             if (isset($_POST["pseudo"], $_POST["password"]) and !empty($_POST["pseudo"]) and !empty($_POST["password"])) {
                 $pseudo = $_POST['pseudo'];
@@ -39,12 +42,12 @@ class UserDAO extends DAO
                 if (isset($result['password']) &&  password_verify($_POST['password'], $result['password'])) {
                     $_SESSION['user'] = $result['pseudo'];
                     $_SESSION['role_id'] = $result['role_id'];
-                    header("Location:../public/index.php?route=administration");
+                    echo "<script type='text/javascript'>window.location.href = '../public/index.php?route=administration';</script>";
                 } else {
-                    $_SESSION['erreur_connexion'] = "pseudo ou mot de pass est inccorect.";
+                    $_SESSION['erreur_connexion'] = "pseudo ou mot de passe est incorrect.";
                 }
             } else {
-                $_SESSION['erreur_connexion'] = "tous les champs doivent être completes";
+                $_SESSION['erreur_connexion'] = "tous les champs doivent être completés";
             }
         }
     }

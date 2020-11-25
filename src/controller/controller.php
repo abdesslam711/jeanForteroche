@@ -51,21 +51,7 @@ function  displaycomment()
 
 	$CommentDAO = new CommentDAO();
 	$CommentDAO->add_comment();
-
-	header('Location: index.php?route=single&articleId=' . ($_GET['articleId']));
-}
-function afficher_form_modif()
-{
-	if (isset($_GET['articleId']) && intval($_GET['articleId']) > 0) {
-		//On recupere l'articles qu'on veut modifier grace l'attribut (GET)
-		$articleDAO = new ArticleDAO();
-		$article = $articleDAO->getArticle($_GET['articleId']);
-		// on recupere le formulaire qui qui permet de modifier 
-		//les information de l'article 
-		require '../views/edit_Article.php';
-	} else {
-		echo $erreur = "la page demander elle n'existe pas ";
-	}
+	header('Location: index.php?route=single&articleId=' . $_GET['articleId']);
 }
 function displayarticle()
 {
@@ -74,18 +60,28 @@ function displayarticle()
 	$articleDAO->add_article();
 	require '../views/add_Article.php';
 }
+function afficher_form_modif()
+{
+
+	//On recupere l'articles qu'on veut modifier grace l'attribut (GET)
+	$articleDAO = new ArticleDAO();
+	$article = $articleDAO->getArticle($_GET['articleId']);
+	// on recupere le formulaire qui qui permet de modifier 
+	//les information de l'article 
+	require '../views/edit_Article.php';
+}
+
 function modifier_article()
 {
 	if (isset($_POST["title"]) && isset($_POST["content"]) && isset($_POST["author"])) {
 		if (!empty($_POST["title"]) && !empty($_POST["content"]) && !empty($_POST["author"])) {
 			$articleDAO = new ArticleDAO();
 			$article = $articleDAO->edit_Article($_POST, $_GET['articleId']);
-			header('Location: index.php?route=edit_Article&articleId=' . ($_GET['articleId']));
 			$_SESSION['modif_article_erreur'] = 'Votre article à été modifier';
-			page_admin();
+			afficher_form_modif();
 		} else {
 			$_SESSION['modif_article_erreur'] = 'tous les chemps doivent être remplies';
-			header('Location: index.php?route=edit_Article&articleId=' . ($_GET['articleId']));
+			afficher_form_modif();
 		}
 	}
 }
@@ -95,6 +91,7 @@ function delet_article()
 		//On recupere l'articles qu'on veut supprimer 
 		$articleDAO = new ArticleDAO();
 		$article = $articleDAO->deletarticle($_GET['articleId']);
+		$_SESSION['delet_article'] = 'Votre article à été supprimer';
 		page_admin();
 	} else {
 		echo $erreur = "la page demander elle n'existe pas ";
@@ -155,8 +152,8 @@ function connexion_login()
 {
 	$userDAO = new UserDAO();
 	$userDAO->login();
-	$_SESSION['admin_connexion'] = "<span >Bienvenue dans votre compte.</span>";
 	require '../views/login.php';
+	$_SESSION['admin_connexion'] = "<span >Bienvenue dans votre compte.</span>";
 }
 function get_comment()
 {
@@ -195,6 +192,7 @@ function page_admin()
 	// On récupérer tous les messages de nos visiteurs
 	$contactDAO = new ContactDAO();
 	$contacts = $contactDAO->contact();
+
 	$articleDAO->administration();
 	require '../views/admin.php';
 }

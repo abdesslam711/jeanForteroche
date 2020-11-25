@@ -21,12 +21,7 @@ try {
                 writer_file();
                 break;
             case 'contact':
-                if (isset($_SESSION['user']) &&  $_SESSION['role_id'] == 1) {
-                    contact_file();
-                } else {
-                    connexion_login();
-                    $_SESSION['erreur_connexion'] = "veuillez rentre votre pseudo et mot de pass pour connecté";
-                }
+                contact_file();
                 break;
             case 'insercontact':
                 inser_contact();
